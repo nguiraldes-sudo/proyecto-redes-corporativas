@@ -1,68 +1,83 @@
-# Instrucciones del proyecto
+# Continuidad del proyecto: Redes Corporativas
 
-## Contexto
+## Qué es y qué debe lograrse
 
-Este repositorio corresponde al Proyecto 2 de Redes Computacionales:
-**Casa matriz y sucursal seguras**. El trabajo se presenta como una solución
-de redes y telecomunicaciones que debe venderse a un cliente empresarial.
+Proyecto 2 de Redes Computacionales: diseñar una solución segura para **Andes
+Ingeniería y Servicios SpA**, con casa matriz en Santiago y sucursal en
+Valparaíso. Debe presentarse como un proyecto comercial que se vende a un
+cliente, no solo como una configuración de Packet Tracer.
 
-## Objetivo técnico
+La solución debe implementarse en **Cisco Packet Tracer 9.0** e incluir, según
+lo permitido por el profesor, VPN IPsec site-to-site, VLAN, OSPF, DMZ,
+NAT/PAT, ACL, DHCP, servicios corporativos, IoT y hardening con SSH v2,
+usuarios locales, banners, contraseñas cifradas y port-security.
 
-Diseñar y documentar una solución implementable en Cisco Packet Tracer 9.0
-con VPN IPsec site-to-site, VLAN, OSPF, DMZ, NAT/PAT, ACL, DHCP, servicios
-corporativos, IoT y hardening.
+## Cómo continuar el trabajo
 
-## Reglas de trabajo
+1. Leer este archivo y `README.md`.
+2. Revisar el glosario antes de configurar conceptos nuevos.
+3. Actualizar la copia local:
 
-- Explicar al estudiante qué se está haciendo y por qué.
-- Mantener la documentación en español.
-- Actualizar los archivos Markdown cuando se tome una decisión importante.
-- No presentar como confirmado algo que aún esté pendiente de validar con el
-  profesor.
-- Mantener el presupuesto entre $20.000.000 y $35.000.000 CLP.
-- Usar equipos vigentes y justificar las decisiones técnicas y comerciales.
-- No incluir credenciales reales, tokens ni datos sensibles.
-- Usar conexiones Ethernet por cobre como criterio preliminar.
-- Mantener WLAN, celulares, laptops y dispositivos IoT inalámbricos pendientes
-  hasta confirmar la instrucción del profesor.
+   ```bash
+   git pull origin main
+   ```
 
-## Archivos importantes
+4. Trabajar en la carpeta correspondiente y explicar cada decisión en
+   `documentacion/`.
+5. Guardar y sincronizar:
 
-- `README.md`: resumen, checklist y bitácora principal.
-- `CONTRIBUTING.md`: flujo de colaboración con Git.
-- `documentacion/00-glosario-de-aprendizaje.md`: conceptos explicados paso a paso.
+   ```bash
+   git add .
+   git commit -m "Describir el cambio"
+   git push origin main
+   ```
+
+No editar simultáneamente el mismo archivo `.pkt`; Packet Tracer no fusiona
+automáticamente cambios internos de archivos binarios.
+
+## Ya realizado
+
+- Repositorio privado creado y colaboradores invitados.
+- Cliente, situación actual, objetivos y requisitos documentados.
+- Topología preliminar de matriz, sucursal, ISP, perímetro, core, usuarios,
+  servidores, voz e IoT.
+- Plan inicial de VLAN y direccionamiento:
+  `10.10.x.x` para matriz y `10.20.x.x` para sucursal.
+- Diseño preliminar de DMZ, VPN IPsec, NAT/PAT y ACL.
+- Glosario pedagógico con explicaciones de IoT, IPsec, DMZ, NAT/PAT, ACL,
+  SSH, VLAN, subredes, gateways y direccionamiento.
+- Carpetas preparadas: `packet-tracer/`, `documentacion/`, `presupuesto/`,
+  `presentacion/` y `diagramas/`.
+
+## Pendientes principales
+
+- Confirmar con el profesor si todo debe conectarse por cobre, incluyendo
+  celulares, laptops, cámaras, termostatos y access points.
+- Validar modelos y funciones disponibles en Packet Tracer 9.0.
+- Completar topología física y lógica definitiva.
+- Revisar VLSM, gateways, enlaces de tránsito y tabla completa de IP.
+- Configurar y probar VLAN, OSPF, DHCP, VPN, NAT/PAT, DMZ, ACL y hardening.
+- Crear el archivo `.pkt`, recopilar evidencias y documentar pruebas.
+- Preparar dos cotizaciones por ítem, justificaciones y presupuesto entre
+  **$20.000.000 y $35.000.000 CLP**, con IVA.
+- Elaborar informe PDF y presentación comercial de 15 minutos.
+
+## Decisiones importantes
+
+- La conectividad por cobre es el criterio base provisional.
+- WLAN, celulares, laptops y IoT inalámbrico quedan pendientes hasta consultar
+  al profesor; no presentarlos como confirmados.
+- La DMZ debe aislar servicios públicos de las VLAN internas.
+- La VPN protege tráfico corporativo entre sedes; NAT/PAT gestiona salida a
+  Internet y ACL controla permisos. No son funciones equivalentes.
+- Todo cambio importante debe quedar respaldado en Markdown y GitHub.
+- No subir credenciales reales, tokens ni datos sensibles.
+
+## Documentos de referencia
+
+- `README.md`: checklist y bitácora.
+- `documentacion/00-glosario-de-aprendizaje.md`: material pedagógico.
 - `documentacion/01-requisitos-del-cliente.md`: cliente y necesidades.
-- `documentacion/02-diseno-de-topologia.md`: diseño inicial.
-- `documentacion/03-vlan-y-direccionamiento-ip.md`: VLAN y direccionamiento.
-- `documentacion/04-seguridad-perimetral-y-vpn.md`: DMZ, VPN, NAT/PAT y ACL.
-
-## Sincronización
-
-Antes de trabajar:
-
-```bash
-git pull origin main
-```
-
-Al terminar:
-
-```bash
-git add .
-git commit -m "Describir el cambio"
-git push origin main
-```
-
-No editar simultáneamente el mismo archivo `.pkt` entre integrantes.
-
-## Estado actual
-
-El cliente académico es **Andes Ingeniería y Servicios SpA**, con casa matriz
-en Santiago y sucursal en Valparaíso. El repositorio ya contiene la
-documentación inicial de requisitos, topología, VLAN, direccionamiento y
-seguridad perimetral.
-
-## Registro de la solicitud
-
-El estudiante solicitó que la información importante quedara escrita y
-respaldada en el repositorio, incluyendo la creación de este archivo para que
-las distintas IA del grupo trabajen con el mismo contexto.
+- `documentacion/02-diseno-de-topologia.md`: topología.
+- `documentacion/03-vlan-y-direccionamiento-ip.md`: VLAN e IP.
+- `documentacion/04-seguridad-perimetral-y-vpn.md`: seguridad y VPN.
