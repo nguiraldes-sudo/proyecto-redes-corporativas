@@ -49,6 +49,7 @@ La propuesta deberá demostrar el problema del cliente, la solución técnica, s
 - `presentacion/`: diapositivas y material para la defensa.
 - `diagramas/`: topologías y diagramas de red.
 - `documentacion/01-requisitos-del-cliente.md`: perfil, necesidades y criterios de aceptación.
+- `documentacion/00-glosario-de-aprendizaje.md`: explicaciones paso a paso de los conceptos técnicos.
 - `CONTRIBUTING.md`: flujo de trabajo para colaborar en el repositorio.
 
 ## Trabajo colaborativo con IA
