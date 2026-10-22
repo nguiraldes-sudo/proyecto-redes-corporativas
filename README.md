@@ -52,6 +52,7 @@ La propuesta deberá demostrar el problema del cliente, la solución técnica, s
 - `documentacion/00-glosario-de-aprendizaje.md`: explicaciones paso a paso de los conceptos técnicos.
 - `documentacion/02-diseno-de-topologia.md`: diseño lógico y físico preliminar de ambas sedes.
 - `documentacion/03-vlan-y-direccionamiento-ip.md`: VLAN, subredes, gateways y redes de tránsito.
+- `documentacion/04-seguridad-perimetral-y-vpn.md`: DMZ, VPN IPsec, NAT/PAT y ACL.
 - `CONTRIBUTING.md`: flujo de trabajo para colaborar en el repositorio.
 
 ## Trabajo colaborativo con IA
@@ -71,7 +72,7 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [x] Levantar requisitos del cliente.
 - [x] Diseñar la topología lógica y física.
 - [x] Definir VLAN, departamentos y direccionamiento IP.
-- [ ] Diseñar DMZ, VPN, NAT y ACL.
+- [x] Diseñar DMZ, VPN, NAT y ACL.
 - [ ] Implementar la red en Packet Tracer.
 - [ ] Ejecutar pruebas y recopilar evidencias.
 - [ ] Preparar presupuesto y cotizaciones.
@@ -91,3 +92,4 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - Se registró como criterio preliminar el uso de conexiones por cobre y se dejó
   la conectividad inalámbrica pendiente de confirmación docente.
 - Se definió un plan preliminar de VLAN, subredes y redes de tránsito.
+- Se documentó el diseño preliminar de DMZ, VPN IPsec, NAT/PAT y ACL.
