@@ -48,6 +48,15 @@ La propuesta deberá demostrar el problema del cliente, la solución técnica, s
 - `presupuesto/`: planilla, cotizaciones y justificación de equipos.
 - `presentacion/`: diapositivas y material para la defensa.
 - `diagramas/`: topologías y diagramas de red.
+- `CONTRIBUTING.md`: flujo de trabajo para colaborar en el repositorio.
+
+## Trabajo colaborativo con IA
+
+Cada integrante puede trabajar con su propia herramienta de IA sobre una copia local
+del repositorio. Antes de modificar archivos debe ejecutar `git pull origin main`,
+y al terminar debe crear un commit descriptivo y ejecutar `git push origin main`.
+Las tareas deben coordinarse para evitar que dos integrantes editen simultáneamente
+el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 
 ## Estado del proyecto
 
