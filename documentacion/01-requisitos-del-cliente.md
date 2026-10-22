@@ -58,9 +58,10 @@ Esta situación genera los siguientes riesgos:
 - AAA para autenticación administrativa.
 - Telefonía IP para áreas de atención y administración.
 - Cámaras IP y termostatos IoT en una red aislada.
-- Red inalámbrica corporativa por departamento.
-- Red inalámbrica de invitados sin acceso a redes internas.
-- Red móvil exclusiva para gerencia.
+- Conectividad Ethernet por cobre como criterio preliminar de implementación.
+- Red inalámbrica corporativa por departamento: pendiente de confirmación.
+- Red inalámbrica de invitados: pendiente de confirmación.
+- Red móvil exclusiva para gerencia: pendiente de confirmación.
 
 ## 6. Criterios de aceptación
 
@@ -79,7 +80,20 @@ La solución se considerará aceptada cuando:
 ## 7. Supuestos académicos
 
 - La topología se implementará en Cisco Packet Tracer 9.0.
+- Se priorizarán enlaces Ethernet por cobre entre los dispositivos de la
+ solución.
+- No se asumirá que celulares, laptops o dispositivos IoT puedan conectarse
+ de forma inalámbrica hasta confirmar el criterio con el profesor.
 - Los routers ISP representan la conectividad del proveedor y no serán administrados por el cliente.
 - Los servicios se simularán con los dispositivos disponibles en Packet Tracer.
 - La cantidad de usuarios sirve para justificar el diseño y no implica desplegar un equipo final por cada usuario.
 - Las claves utilizadas en la simulación serán académicas y no se reutilizarán en sistemas reales.
+
+## 8. Decisiones pendientes de confirmación
+
+1. ¿La exigencia de conexión por cobre aplica a todos los dispositivos,
+   incluidos celulares, laptops, cámaras y termostatos?
+2. ¿Se permite conservar WLAN como diseño opcional o debe eliminarse por
+   completo de la topología?
+3. Si se mantienen dispositivos móviles o IoT, ¿se acepta una conexión
+   inalámbrica simulada o se exige una conexión Ethernet?

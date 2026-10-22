@@ -66,12 +66,18 @@ completa depende de las funciones soportadas por los equipos simulados.
 
 ### Access points
 
-Proporcionan conectividad inalámbrica. Cada SSID se asociará a una VLAN
-determinada:
+La inclusión de access points queda **pendiente de confirmación**. El profesor
+indicó que la implementación debe conectarse por cobre, pero falta confirmar si
+esa restricción también aplica a celulares, laptops, cámaras, termostatos y
+otros dispositivos móviles.
 
-- SSID corporativo por departamento.
-- SSID de invitados.
-- SSID o red móvil de gerencia.
+Hasta recibir confirmación:
+
+- La topología base se diseñará con enlaces Ethernet por cobre.
+- La WLAN no se considerará indispensable para la implementación.
+- Los access points, SSID y dispositivos móviles quedarán como módulo opcional.
+- No se eliminarán definitivamente hasta confirmar cómo se evaluará el
+  requisito de conectividad inalámbrica.
 
 ### Servidores
 
@@ -159,6 +165,7 @@ de usuarios.
 - Plan de direccionamiento IP y tamaño de cada subred.
 - Protocolo de redundancia disponible y demostrable en Packet Tracer.
 - Reglas detalladas de ACL.
+- Confirmación del profesor sobre WLAN, celulares, laptops y dispositivos IoT.
 
 ## 8. Conceptos aprendidos
 
@@ -168,6 +175,8 @@ de usuarios.
 - **Núcleo:** parte central que concentra el tráfico de una sede.
 - **Perímetro:** frontera entre la red corporativa y las redes externas.
 - **VLAN:** separación lógica de una red física.
+- **Enlace de cobre:** conexión Ethernet física mediante cable, normalmente
+  cable UTP, entre un dispositivo y otro.
 
 ## Bitácora
 
@@ -177,3 +186,5 @@ de usuarios.
 - Se identificaron los bloques de perímetro, núcleo, usuarios, servidores,
   Wi-Fi, voz e IoT.
 - Se documentaron los recorridos de tráfico principales.
+- Se dejó pendiente la WLAN mientras se confirma la exigencia de conectividad
+  exclusivamente por cobre.
