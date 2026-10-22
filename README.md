@@ -48,6 +48,7 @@ La propuesta deberá demostrar el problema del cliente, la solución técnica, s
 - `presupuesto/`: planilla, cotizaciones y justificación de equipos.
 - `presentacion/`: diapositivas y material para la defensa.
 - `diagramas/`: topologías y diagramas de red.
+- `documentacion/01-requisitos-del-cliente.md`: perfil, necesidades y criterios de aceptación.
 - `CONTRIBUTING.md`: flujo de trabajo para colaborar en el repositorio.
 
 ## Trabajo colaborativo con IA
@@ -63,8 +64,8 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [x] Seleccionar el Proyecto 2.
 - [x] Definir el enfoque comercial.
 - [x] Confirmar el rango presupuestario.
-- [ ] Definir el cliente y su giro empresarial.
-- [ ] Levantar requisitos del cliente.
+- [x] Definir el cliente y su giro empresarial.
+- [x] Levantar requisitos del cliente.
 - [ ] Diseñar la topología lógica y física.
 - [ ] Definir VLAN, departamentos y direccionamiento IP.
 - [ ] Diseñar DMZ, VPN, NAT y ACL.
@@ -82,3 +83,5 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - Se definió el enfoque de presentación como una solución para vender a un cliente.
 - Se confirmó el presupuesto entre $20.000.000 y $35.000.000 CLP.
 - Se preparó la carpeta local para colaboración mediante GitHub.
+- Se definió como cliente académico a Andes Ingeniería y Servicios SpA.
+- Se documentaron los objetivos, departamentos, servicios y criterios de aceptación.
