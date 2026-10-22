@@ -284,6 +284,31 @@ VLAN 10 Administración
 **Regla práctica:** primero identificamos la VLAN, luego su subred, después el
 gateway y finalmente asignamos IP a cada dispositivo dentro del rango válido.
 
+## Repaso aplicado al proyecto
+
+La explicación anterior se revisó paso a paso utilizando como ejemplo la red
+`10.10.10.0/27`:
+
+- La dirección de red es `10.10.10.0`.
+- El gateway de la VLAN puede ser `10.10.10.1`.
+- Los hosts utilizables van desde `10.10.10.2` hasta `10.10.10.30`.
+- El broadcast es `10.10.10.31`.
+- La casa matriz utiliza el bloque `10.10.x.x`.
+- La sucursal utiliza el bloque `10.20.x.x`.
+- Las redes `/30` se reservan para enlaces entre dispositivos de
+  infraestructura.
+
+La secuencia que debemos seguir es:
+
+```text
+Departamento → VLAN → subred → gateway → IP de cada dispositivo
+```
+
+### 2026-10-21
+
+- Se solicitó guardar el último repaso sobre direccionamiento IP como respaldo
+  del aprendizaje.
+
 ## Bitácora de aprendizaje
 
 ### 2026-10-21
