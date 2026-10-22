@@ -50,6 +50,7 @@ La propuesta deberá demostrar el problema del cliente, la solución técnica, s
 - `diagramas/`: topologías y diagramas de red.
 - `documentacion/01-requisitos-del-cliente.md`: perfil, necesidades y criterios de aceptación.
 - `documentacion/00-glosario-de-aprendizaje.md`: explicaciones paso a paso de los conceptos técnicos.
+- `documentacion/02-diseno-de-topologia.md`: diseño lógico y físico preliminar de ambas sedes.
 - `CONTRIBUTING.md`: flujo de trabajo para colaborar en el repositorio.
 
 ## Trabajo colaborativo con IA
@@ -67,7 +68,7 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [x] Confirmar el rango presupuestario.
 - [x] Definir el cliente y su giro empresarial.
 - [x] Levantar requisitos del cliente.
-- [ ] Diseñar la topología lógica y física.
+- [x] Diseñar la topología lógica y física.
 - [ ] Definir VLAN, departamentos y direccionamiento IP.
 - [ ] Diseñar DMZ, VPN, NAT y ACL.
 - [ ] Implementar la red en Packet Tracer.
