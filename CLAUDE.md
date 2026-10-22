@@ -60,3 +60,9 @@ El cliente académico es **Andes Ingeniería y Servicios SpA**, con casa matriz
 en Santiago y sucursal en Valparaíso. El repositorio ya contiene la
 documentación inicial de requisitos, topología, VLAN, direccionamiento y
 seguridad perimetral.
+
+## Registro de la solicitud
+
+El estudiante solicitó que la información importante quedara escrita y
+respaldada en el repositorio, incluyendo la creación de este archivo para que
+las distintas IA del grupo trabajen con el mismo contexto.

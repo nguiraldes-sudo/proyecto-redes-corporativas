@@ -94,3 +94,5 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
   la conectividad inalámbrica pendiente de confirmación docente.
 - Se definió un plan preliminar de VLAN, subredes y redes de tránsito.
 - Se documentó el diseño preliminar de DMZ, VPN IPsec, NAT/PAT y ACL.
+- Se solicitó verificar y crear el archivo `CLAUDE.md` con instrucciones
+  comunes para las distintas IA que utilizarán los integrantes.
