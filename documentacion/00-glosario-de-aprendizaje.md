@@ -163,3 +163,5 @@ Estos conceptos cumplen funciones distintas:
 
 - Se definió que el proyecto debe explicarse paso a paso al estudiante.
 - Se documentaron los conceptos IoT, IPsec, DMZ, NAT/PAT, ACL y SSH.
+- Se revisaron nuevamente estos conceptos con ejemplos aplicados a la solución
+  de casa matriz y sucursal segura.
