@@ -54,6 +54,7 @@ La propuesta deberá demostrar el problema del cliente, la solución técnica, s
 - `documentacion/03-vlan-y-direccionamiento-ip.md`: VLAN, subredes, gateways y redes de tránsito.
 - `documentacion/04-seguridad-perimetral-y-vpn.md`: DMZ, VPN IPsec, NAT/PAT y ACL.
 - `CONTRIBUTING.md`: flujo de trabajo para colaborar en el repositorio.
+- `CLAUDE.md`: instrucciones comunes para asistentes de IA que trabajen en el proyecto.
 
 ## Trabajo colaborativo con IA
 
