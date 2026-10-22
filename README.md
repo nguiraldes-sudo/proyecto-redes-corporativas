@@ -51,6 +51,7 @@ La propuesta deberá demostrar el problema del cliente, la solución técnica, s
 - `documentacion/01-requisitos-del-cliente.md`: perfil, necesidades y criterios de aceptación.
 - `documentacion/00-glosario-de-aprendizaje.md`: explicaciones paso a paso de los conceptos técnicos.
 - `documentacion/02-diseno-de-topologia.md`: diseño lógico y físico preliminar de ambas sedes.
+- `documentacion/03-vlan-y-direccionamiento-ip.md`: VLAN, subredes, gateways y redes de tránsito.
 - `CONTRIBUTING.md`: flujo de trabajo para colaborar en el repositorio.
 
 ## Trabajo colaborativo con IA
@@ -69,7 +70,7 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [x] Definir el cliente y su giro empresarial.
 - [x] Levantar requisitos del cliente.
 - [x] Diseñar la topología lógica y física.
-- [ ] Definir VLAN, departamentos y direccionamiento IP.
+- [x] Definir VLAN, departamentos y direccionamiento IP.
 - [ ] Diseñar DMZ, VPN, NAT y ACL.
 - [ ] Implementar la red en Packet Tracer.
 - [ ] Ejecutar pruebas y recopilar evidencias.
@@ -89,3 +90,4 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - Se documentaron los objetivos, departamentos, servicios y criterios de aceptación.
 - Se registró como criterio preliminar el uso de conexiones por cobre y se dejó
   la conectividad inalámbrica pendiente de confirmación docente.
+- Se definió un plan preliminar de VLAN, subredes y redes de tránsito.
