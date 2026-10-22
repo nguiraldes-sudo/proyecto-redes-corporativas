@@ -157,6 +157,133 @@ Estos conceptos cumplen funciones distintas:
 > utiliza NAT/PAT para la salida a Internet, aplica ACL para controlar el
 > tráfico y usa SSH para administrar los equipos de forma segura.
 
+## Direccionamiento IP desde cero
+
+Una dirección IP identifica a un dispositivo dentro de una red. Es similar a
+una dirección postal: permite saber a qué equipo deben llegar los datos.
+
+Ejemplo de una dirección IP:
+
+```text
+10.10.10.25
+```
+
+La dirección completa no basta para saber qué parte identifica a la red y qué
+parte identifica al dispositivo. Para eso usamos una **máscara de subred**.
+
+### Red, máscara y host
+
+Tomemos esta red:
+
+```text
+Red:     10.10.10.0/27
+Máscara: 255.255.255.224
+```
+
+El `/27` significa que 27 bits se reservan para identificar la red. Quedan 5
+bits para identificar dispositivos:
+
+```text
+2^5 = 32 direcciones totales
+32 - 2 = 30 direcciones utilizables
+```
+
+Se restan dos direcciones porque una identifica la red y otra se reserva para
+broadcast:
+
+| Elemento | Dirección | Significado |
+|---|---|---|
+| Dirección de red | `10.10.10.0` | Identifica a toda la subred |
+| Gateway | `10.10.10.1` | Puerta de salida de la VLAN |
+| Hosts utilizables | `10.10.10.2` a `10.10.10.30` | Equipos de usuarios y otros dispositivos |
+| Broadcast | `10.10.10.31` | Comunicación hacia todos los hosts de la subred |
+
+Por lo tanto, no se debe asignar `10.10.10.0` ni `10.10.10.31` a un
+computador. El gateway usa una dirección utilizable, en este diseño la primera.
+
+### Ejemplo completo
+
+Supongamos que un PC de Administración tiene:
+
+```text
+IP:      10.10.10.25
+Máscara: 255.255.255.224
+Gateway: 10.10.10.1
+VLAN:    10
+```
+
+Esto significa:
+
+- El PC pertenece a la VLAN 10.
+- Está dentro de la red `10.10.10.0/27`.
+- Puede comunicarse directamente con otros equipos de `10.10.10.1` a
+  `10.10.10.30`.
+- Para llegar a otra VLAN o a Internet, envía el tráfico al gateway
+  `10.10.10.1`.
+
+### ¿Por qué la sucursal usa 10.20?
+
+La casa matriz y la sucursal deben utilizar redes diferentes. Si ambas usaran
+la misma subred, los routers tendrían dificultades para distinguir el destino.
+
+Usaremos esta convención:
+
+```text
+10.10.x.x = casa matriz
+10.20.x.x = sucursal
+```
+
+Por ejemplo:
+
+```text
+VLAN 10 matriz:    10.10.10.0/27
+VLAN 10 sucursal:  10.20.10.0/28
+```
+
+Ambas son Administración, pero no son la misma red. La VPN y el enrutamiento
+pueden distinguirlas correctamente.
+
+### ¿Qué significa /28 y /26?
+
+El número después de la barra indica cuántos bits identifican la red. Mientras
+mayor sea el número, menor será la cantidad de hosts disponibles:
+
+| Prefijo | Direcciones totales | Hosts utilizables | Uso típico en nuestro diseño |
+|---|---:|---:|---|
+| `/30` | 4 | 2 | Enlace entre dos routers |
+| `/29` | 8 | 6 | Departamento pequeño |
+| `/28` | 16 | 14 | Departamento pequeño o infraestructura |
+| `/27` | 32 | 30 | Departamento mediano |
+| `/26` | 64 | 62 | Departamento grande |
+
+### ¿Por qué no usamos una sola red para toda la empresa?
+
+Si todos los equipos estuvieran, por ejemplo, en `10.10.0.0/16`, existiría una
+red demasiado grande y poco controlada. Las VLAN y subredes permiten:
+
+- Separar departamentos.
+- Reducir tráfico de broadcast.
+- Aplicar ACL entre áreas.
+- Detectar más fácilmente el origen de un problema.
+- Mantener una estructura ordenada y escalable.
+
+### Resumen visual
+
+```text
+VLAN 10 Administración
+        │
+        └── Subred 10.10.10.0/27
+              ├── .0   = red
+              ├── .1   = gateway
+              ├── .2   = primer host posible
+              ├── .25  = ejemplo de PC
+              ├── .30  = último host posible
+              └── .31  = broadcast
+```
+
+**Regla práctica:** primero identificamos la VLAN, luego su subred, después el
+gateway y finalmente asignamos IP a cada dispositivo dentro del rango válido.
+
 ## Bitácora de aprendizaje
 
 ### 2026-10-21
