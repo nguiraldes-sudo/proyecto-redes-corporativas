@@ -312,6 +312,104 @@ salida a Internet, pero no acceso a servidores internos.
 - Se decidió mantener la infraestructura principal por cobre e incorporar WLAN
   como una mejora de movilidad.
 
+## Seguridad perimetral y VPN: cómo se organiza la red
+
+La **seguridad perimetral** protege el límite entre la red de la empresa y las
+redes externas. En nuestro diseño, ese límite estará formado principalmente
+por el router perimetral o firewall.
+
+La estructura conceptual es:
+
+```text
+Internet
+   │
+Router perimetral / firewall
+   ├── DMZ: servidores publicados
+   └── Red interna: VLAN de usuarios y servicios privados
+```
+
+El router perimetral no debe tratar todos los destinos de la misma manera:
+
+- Si el tráfico va a Internet, puede aplicar NAT/PAT.
+- Si el tráfico llega a un servicio publicado, puede enviarlo a la DMZ.
+- Si intenta entrar a una VLAN interna sin autorización, debe bloquearlo.
+- Si une las dos sedes, debe participar en la VPN IPsec.
+
+### Tres zonas de confianza
+
+Podemos pensar en tres zonas:
+
+1. **Externa:** Internet y los routers ISP. Es una zona no confiable.
+2. **DMZ:** servidores que necesitan publicar algunos servicios. Es una zona
+   controlada, no equivalente a la red interna.
+3. **Interna:** usuarios, administración, voz, IoT y servidores privados.
+
+La regla general es no permitir una comunicación más amplia de la necesaria.
+Por ejemplo, publicar HTTPS hacia el servidor web no debe permitir acceso
+completo desde Internet hacia toda la DMZ.
+
+## VPN site-to-site paso a paso
+
+Una VPN site-to-site conecta dos redes completas mediante sus routers
+perimetrales. No es lo mismo que conectar un celular individual a la empresa.
+
+```text
+LAN matriz ─ Router matriz ═══ VPN IPsec ═══ Router sucursal ─ LAN sucursal
+                         │
+                    Red ISP externa
+```
+
+Cuando un PC de la sucursal intenta acceder a una red autorizada de la matriz:
+
+1. El PC envía el tráfico a su gateway.
+2. El router sucursal identifica que el destino pertenece a la matriz.
+3. El tráfico se cifra y encapsula mediante IPsec.
+4. El paquete atraviesa la red ISP sin revelar su contenido original.
+5. El router matriz descifra el paquete.
+6. El tráfico llega al servidor o usuario autorizado.
+
+La VPN no elimina la necesidad de ACL. Después de descifrar el tráfico, todavía
+debemos decidir si ese origen puede acceder al destino solicitado.
+
+## Tráfico que sí y que no va por la VPN
+
+### Tráfico corporativo
+
+```text
+Sucursal → servidor autorizado de la matriz
+```
+
+Debe utilizar el túnel IPsec.
+
+### Tráfico de Internet
+
+```text
+Sucursal → sitio web público
+```
+
+Normalmente sale por el router local mediante NAT/PAT. No necesariamente debe
+viajar primero a la matriz.
+
+### Tráfico no autorizado
+
+```text
+Sucursal → VLAN de gestión de la matriz sin permiso
+```
+
+Aunque exista una VPN, una ACL debe bloquearlo.
+
+## Diferencia entre VPN, firewall y NAT
+
+| Elemento | Función principal |
+|---|---|
+| VPN IPsec | Cifrar y autenticar tráfico entre sedes |
+| Firewall/ACL | Permitir o bloquear comunicaciones |
+| NAT/PAT | Traducir direcciones para la salida o publicación |
+| DMZ | Separar servidores publicados de la red interna |
+
+Una VPN puede estar cifrada y aun así tener permisos demasiado amplios. Por
+eso la seguridad depende de combinar túnel, segmentación y reglas.
+
 ## Repaso aplicado al proyecto
 
 La explicación anterior se revisó paso a paso utilizando como ejemplo la red
