@@ -90,8 +90,8 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - Se preparó la carpeta local para colaboración mediante GitHub.
 - Se definió como cliente académico a Andes Ingeniería y Servicios SpA.
 - Se documentaron los objetivos, departamentos, servicios y criterios de aceptación.
-- Se registró como criterio preliminar el uso de conexiones por cobre y se dejó
-  la conectividad inalámbrica pendiente de confirmación docente.
+- Se confirmó que Wireless es opcional. La infraestructura principal seguirá
+  conectada por cobre y WLAN se incorporará como componente adicional.
 - Se definió un plan preliminar de VLAN, subredes y redes de tránsito.
 - Se documentó el diseño preliminar de DMZ, VPN IPsec, NAT/PAT y ACL.
 - Se solicitó verificar y crear el archivo `CLAUDE.md` con instrucciones

@@ -51,8 +51,8 @@ automáticamente cambios internos de archivos binarios.
 
 ## Pendientes principales
 
-- Confirmar con el profesor si todo debe conectarse por cobre, incluyendo
-  celulares, laptops, cámaras, termostatos y access points.
+- Validar qué funciones Wireless permite demostrar Packet Tracer 9.0 y qué
+  dispositivos móviles se incluirán en la demostración.
 - Validar modelos y funciones disponibles en Packet Tracer 9.0.
 - Completar topología física y lógica definitiva.
 - Revisar VLSM, gateways, enlaces de tránsito y tabla completa de IP.
@@ -64,9 +64,9 @@ automáticamente cambios internos de archivos binarios.
 
 ## Decisiones importantes
 
-- La conectividad por cobre es el criterio base provisional.
-- WLAN, celulares, laptops y IoT inalámbrico quedan pendientes hasta consultar
-  al profesor; no presentarlos como confirmados.
+- La infraestructura principal debe conectarse por cobre.
+- Wireless es opcional y se incorporará como mejora de movilidad, segmentada
+  mediante VLAN y protegida con WPA2/WPA3 y ACL.
 - La DMZ debe aislar servicios públicos de las VLAN internas.
 - La VPN protege tráfico corporativo entre sedes; NAT/PAT gestiona salida a
   Internet y ACL controla permisos. No son funciones equivalentes.

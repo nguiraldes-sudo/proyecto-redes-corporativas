@@ -64,20 +64,22 @@ En Packet Tracer se documentará claramente si el diseño utiliza ambos switches
 activamente o si uno se reserva como respaldo, porque la alta disponibilidad
 completa depende de las funciones soportadas por los equipos simulados.
 
-### Access points
+### Access points y Wireless
 
-La inclusión de access points queda **pendiente de confirmación**. El profesor
-indicó que la implementación debe conectarse por cobre, pero falta confirmar si
-esa restricción también aplica a celulares, laptops, cámaras, termostatos y
-otros dispositivos móviles.
+La conectividad Wireless es opcional, por lo que se incorporará como una capa
+adicional de movilidad. La infraestructura principal seguirá conectada por
+cobre y no dependerá de los access points para operar.
 
-Hasta recibir confirmación:
+Los access points se conectarán por Ethernet a los switches y podrán ofrecer:
 
-- La topología base se diseñará con enlaces Ethernet por cobre.
-- La WLAN no se considerará indispensable para la implementación.
-- Los access points, SSID y dispositivos móviles quedarán como módulo opcional.
-- No se eliminarán definitivamente hasta confirmar cómo se evaluará el
-  requisito de conectividad inalámbrica.
+- SSID corporativos asociados a las VLAN de los departamentos.
+- SSID de invitados asociado a una VLAN aislada.
+- Red móvil para gerencia, si Packet Tracer permite demostrarla de forma
+  clara.
+
+La seguridad inalámbrica utilizará WPA2 o WPA3 según las opciones disponibles
+en Packet Tracer. La WLAN debe respetar las mismas políticas de segmentación y
+ACL que las conexiones cableadas.
 
 ### Servidores
 
@@ -165,7 +167,7 @@ de usuarios.
 - Plan de direccionamiento IP y tamaño de cada subred.
 - Protocolo de redundancia disponible y demostrable en Packet Tracer.
 - Reglas detalladas de ACL.
-- Confirmación del profesor sobre WLAN, celulares, laptops y dispositivos IoT.
+- Validar qué funciones Wireless permite demostrar Packet Tracer 9.0.
 
 ## 8. Conceptos aprendidos
 
@@ -186,5 +188,5 @@ de usuarios.
 - Se identificaron los bloques de perímetro, núcleo, usuarios, servidores,
   Wi-Fi, voz e IoT.
 - Se documentaron los recorridos de tráfico principales.
-- Se dejó pendiente la WLAN mientras se confirma la exigencia de conectividad
-  exclusivamente por cobre.
+- Se incorporó Wireless como componente opcional, manteniendo la infraestructura
+  principal conectada por cobre.

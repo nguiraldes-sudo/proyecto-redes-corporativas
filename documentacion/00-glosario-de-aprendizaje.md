@@ -284,6 +284,34 @@ VLAN 10 Administración
 **Regla práctica:** primero identificamos la VLAN, luego su subred, después el
 gateway y finalmente asignamos IP a cada dispositivo dentro del rango válido.
 
+## Wireless en este proyecto
+
+**Wireless** significa conectividad inalámbrica. Permite que laptops,
+celulares u otros dispositivos se conecten a la red mediante ondas de radio,
+normalmente a través de un access point, en vez de utilizar un cable Ethernet.
+
+En este proyecto será un componente opcional. La infraestructura principal
+seguirá conectada por cobre, mientras que los access points podrán entregar
+movilidad adicional.
+
+Conceptos relacionados:
+
+- **Access point:** equipo que ofrece acceso inalámbrico y se conecta por cable
+  a la red cableada.
+- **SSID:** nombre visible de una red inalámbrica.
+- **WPA2/WPA3:** mecanismos de seguridad para proteger el acceso inalámbrico.
+- **WLAN:** red local inalámbrica.
+
+La WLAN no debe convertirse en una red plana. Cada SSID debe asociarse a una
+VLAN y respetar las ACL de la red cableada. Por ejemplo, invitados deben tener
+salida a Internet, pero no acceso a servidores internos.
+
+### 2026-10-21
+
+- Se confirmó que Wireless es opcional según el profesor.
+- Se decidió mantener la infraestructura principal por cobre e incorporar WLAN
+  como una mejora de movilidad.
+
 ## Repaso aplicado al proyecto
 
 La explicación anterior se revisó paso a paso utilizando como ejemplo la red
