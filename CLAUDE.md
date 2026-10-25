@@ -81,3 +81,5 @@ automáticamente cambios internos de archivos binarios.
 - `documentacion/02-diseno-de-topologia.md`: topología.
 - `documentacion/03-vlan-y-direccionamiento-ip.md`: VLAN e IP.
 - `documentacion/04-seguridad-perimetral-y-vpn.md`: seguridad y VPN.
+- `documentacion/05-matriz-de-trafico-y-politicas.md`: reglas de tráfico,
+  SSID y criterios de prueba.

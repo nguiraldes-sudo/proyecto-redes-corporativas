@@ -53,6 +53,8 @@ La propuesta deberá demostrar el problema del cliente, la solución técnica, s
 - `documentacion/02-diseno-de-topologia.md`: diseño lógico y físico preliminar de ambas sedes.
 - `documentacion/03-vlan-y-direccionamiento-ip.md`: VLAN, subredes, gateways y redes de tránsito.
 - `documentacion/04-seguridad-perimetral-y-vpn.md`: DMZ, VPN IPsec, NAT/PAT y ACL.
+- `documentacion/05-matriz-de-trafico-y-politicas.md`: flujos permitidos,
+  bloqueos, SSID y criterios de prueba.
 - `CONTRIBUTING.md`: flujo de trabajo para colaborar en el repositorio.
 - `CLAUDE.md`: instrucciones comunes para asistentes de IA que trabajen en el proyecto.
 
@@ -74,6 +76,7 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [x] Diseñar la topología lógica y física.
 - [x] Definir VLAN, departamentos y direccionamiento IP.
 - [x] Diseñar DMZ, VPN, NAT y ACL.
+- [x] Definir la matriz inicial de tráfico y políticas de acceso.
 - [ ] Implementar la red en Packet Tracer.
 - [ ] Ejecutar pruebas y recopilar evidencias.
 - [ ] Preparar presupuesto y cotizaciones.
