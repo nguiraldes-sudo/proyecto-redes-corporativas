@@ -169,6 +169,24 @@ de usuarios.
 - Reglas detalladas de ACL.
 - Validar qué funciones Wireless permite demostrar Packet Tracer 9.0.
 
+## 8. Convención de nombres
+
+Para que el diagrama y la configuración sean fáciles de leer, los nombres
+identifican la sede y la función del equipo:
+
+- `R-MATRIZ` y `R-SUCURSAL`: routers perimetrales.
+- `ISP-1` y `ISP-2`: routers de la red externa simulada.
+- `SW-M*-CORE` y `SW-S*-CORE`: switches multicapa de núcleo.
+- `SW-M-ACC*` y `SW-S-ACC*`: switches de acceso.
+- `PC-M-*` y `PC-S-*`: computadores de matriz y sucursal.
+- `SRV-*`: servidores.
+- `PHONE-*`: teléfonos IP.
+- `IOT-*`: dispositivos IoT.
+- `AP-*`: access points opcionales.
+
+La topología completa se construirá como una segunda versión del archivo
+`.pkt`, sin sobrescribir `redes-corporativas-etapa-01-lan.pkt`.
+
 ## 8. Conceptos aprendidos
 
 - **Topología física:** ubicación y conexión material de los dispositivos.

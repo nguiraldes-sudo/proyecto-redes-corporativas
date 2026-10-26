@@ -108,3 +108,21 @@ vecindades FULL entre los routers y el ping entre `PC-SUCURSAL` y la red
 `10.10.10.0/27` funciona. La VPN IPsec no pudo configurarse en `R-SUCURSAL`
 porque su IOS solo ofrece `crypto key` y no soporta `crypto isakmp` ni
 `crypto ipsec`; esta limitación debe explicarse en el informe.
+
+## Convención de nombres de la topología completa
+
+La versión 2 se guardará como
+`packet-tracer/redes-corporativas-topologia-completa.pkt`, conservando la
+versión inicial como respaldo. Los equipos existentes de la matriz se
+identifican como `R-MATRIZ`, `SW-M-ACC0`, `PC-M-ADMIN1`,
+`PC-M-ADMIN2`, `PC-M-RRHH`, `PC-M-INGENIERIA`, `PC-M-OPERACIONES`,
+`PC-M-VENTAS`, `PC-M-GERENCIA`, `SRV-SERVICIOS-M`, `PHONE-M-ADMIN`,
+`IOT-M-PRUEBA`, `PC-M-GUEST` y `PC-M-GESTION`.
+
+Los nuevos equipos de la matriz usarán `SW-M1-CORE`, `SW-M2-CORE`,
+`SW-M-ACC1`, `SW-M-ACC2`, `SRV-DMZ-M`, `PHONE-M-GERENCIA`,
+`IOT-M-CAMARA`, `AP-M-GENERAL` y `PC-M-SOPORTE`. En la sucursal se usarán
+`SW-S1-CORE`, `SW-S2-CORE`, `SW-S-ACC0`, `SW-S-ACC1`, `SW-S-ACC2`,
+`PC-S-ADMIN`, `PC-S-RRHH`, `PC-S-ING`, `PC-S-OPER`, `PC-S-VENTAS`,
+`PC-S-GERENCIA`, `SRV-SERVICIOS-S`, `PHONE-S-GERENCIA`,
+`IOT-S-CAMARA` y `AP-S-GENERAL`.

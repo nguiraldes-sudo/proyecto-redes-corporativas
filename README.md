@@ -57,6 +57,8 @@ La propuesta deberá demostrar el problema del cliente, la solución técnica, s
   bloqueos, SSID y criterios de prueba.
 - `packet-tracer/redes-corporativas-etapa-01-lan.pkt`: primera etapa funcional
   de la casa matriz con VLAN y enrutamiento inter-VLAN.
+- `packet-tracer/redes-corporativas-topologia-completa.pkt`: segunda versión
+  planificada para integrar ambas sedes y todos los equipos.
 - `CONTRIBUTING.md`: flujo de trabajo para colaborar en el repositorio.
 - `CLAUDE.md`: instrucciones comunes para asistentes de IA que trabajen en el proyecto.
 
@@ -80,7 +82,7 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [x] Diseñar DMZ, VPN, NAT y ACL.
 - [x] Definir la matriz inicial de tráfico y políticas de acceso.
 - [x] Implementar la primera etapa de VLAN y enrutamiento inter-VLAN.
-- [ ] Completar la red en Packet Tracer.
+- [ ] Construir la topología completa en Packet Tracer.
 - [ ] Ejecutar pruebas y recopilar evidencias.
 - [ ] Preparar presupuesto y cotizaciones.
 - [ ] Redactar informe técnico.
@@ -119,3 +121,10 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
   el IOS disponible porque no soporta `crypto isakmp` ni `crypto ipsec`.
 - Aún faltan completar pruebas, evidencias, presupuesto, informe y
   presentación.
+
+### Convención de nombres
+
+Los equipos se nombran con sede y función: `R-MATRIZ`, `R-SUCURSAL`,
+`SW-M*-CORE`, `SW-S*-CORE`, `SW-M-ACC*`, `SW-S-ACC*`, `PC-M-*`, `PC-S-*`,
+`SRV-*`, `PHONE-*`, `IOT-*` y `AP-*`. La versión completa se construirá sin
+sobrescribir el archivo de la primera etapa.
