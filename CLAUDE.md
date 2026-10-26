@@ -96,8 +96,9 @@ archivo `.pkt` en Packet Tracer.
 También se configuró SSH en el router y el switch, con administración desde la
 VLAN 110. Se creó una ACL para bloquear el acceso de la VLAN 100 a las redes
 internas, manteniendo disponible su gateway y dejando una excepción para DHCP.
-DHCP está configurado y probado en las VLAN 10, 20, 30, 40, 50 y 60; la VLAN
-100 también obtiene dirección después de permitir DHCP en su ACL. La VLAN 70
-de servidores y la VLAN 110 de gestión conservan direccionamiento manual.
-La VLAN 80 tiene su pool DHCP creado, pero la asignación automática al teléfono
-IP todavía debe validarse.
+DHCP está configurado y probado en las VLAN 10, 20, 30, 40, 50, 60, 80 y 100.
+El teléfono IP recibió la dirección `10.10.80.11` mediante DHCP. La VLAN 100
+también obtiene dirección después de permitir DHCP en su ACL. La VLAN 70 de
+servidores y la VLAN 110 de gestión conservan direccionamiento manual. La VLAN
+90 todavía usa un PC temporal para la prueba y puede requerir DHCP cuando se
+seleccione un dispositivo IoT compatible.

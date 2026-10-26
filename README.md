@@ -111,5 +111,7 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - Se verificó el enrutamiento inter-VLAN con subinterfaces del router.
 - La VLAN 90 quedó validada temporalmente con un PC mientras se selecciona un
   dispositivo IoT compatible.
+- DHCP quedó probado en las VLAN de usuarios, invitados y voz; el teléfono IP
+  recibió `10.10.80.11`.
 - Se documentó que aún faltan SSH, ACL, DHCP, OSPF, NAT/PAT, DMZ, VPN y la
   topología de la sucursal.

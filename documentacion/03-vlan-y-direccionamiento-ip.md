@@ -195,4 +195,6 @@ que la VLAN 90 se validó temporalmente con un PC.
   `G0/0.10` a `G0/0.110`.
 - Se validó la VLAN 90 con un PC temporal porque la webcam IoT no aprendió
   una dirección MAC en el switch.
+- Se configuró DHCP para las VLAN 10, 20, 30, 40, 50, 60, 80 y 100. El
+  teléfono IP recibió `10.10.80.11`.
 - Quedan pendientes SSH, ACL, DHCP, servicios, DMZ, OSPF, NAT/PAT y VPN.
