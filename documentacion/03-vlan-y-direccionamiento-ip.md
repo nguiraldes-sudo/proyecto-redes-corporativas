@@ -135,7 +135,34 @@ Propuesta inicial:
 Una red `/30` tiene dos direcciones utilizables, adecuadas para un enlace
 entre dos dispositivos.
 
-## 8. Decisiones aún pendientes
+## 8. Estado de implementación en Packet Tracer
+
+En la primera etapa se implementó en la casa matriz una topología de práctica
+con un router, un switch 2960 y equipos finales. El router utiliza
+**router-on-a-stick**: una interfaz física en trunk y una subinterfaz por VLAN.
+
+Se configuraron y probaron los siguientes gateways:
+
+| VLAN | Nombre | Gateway | Resultado |
+|---:|---|---|---|
+| 10 | ADMIN | `10.10.10.1/27` | Operativa |
+| 20 | RRHH | `10.10.20.1/28` | Operativa |
+| 30 | INGENIERIA | `10.10.30.1/26` | Operativa |
+| 40 | OPERACIONES | `10.10.40.1/27` | Operativa |
+| 50 | VENTAS | `10.10.50.1/27` | Operativa |
+| 60 | GERENCIA | `10.10.60.1/28` | Operativa |
+| 70 | SERVIDORES | `10.10.70.1/27` | Operativa |
+| 80 | VOZ | `10.10.80.1/27` | Gateway configurado |
+| 90 | IOT | `10.10.90.1/27` | Probada con PC temporal |
+| 100 | GUEST | `10.10.100.1/27` | Operativa |
+| 110 | GESTION | `10.10.110.1/28` | Operativa |
+
+Las pruebas realizadas incluyeron ping desde cada equipo de prueba hacia su
+gateway y pings entre VLAN. El dispositivo IoT definitivo queda pendiente:
+la webcam probada no generó una dirección MAC en el puerto del switch, por lo
+que la VLAN 90 se validó temporalmente con un PC.
+
+## 9. Decisiones aún pendientes
 
 - Confirmar si se implementarán VLAN de invitados y WLAN.
 - Confirmar si los dispositivos IoT serán cableados o inalámbricos.
@@ -158,3 +185,14 @@ entre dos dispositivos.
 - Se definió un plan preliminar de VLAN para ambas sedes.
 - Se asignaron bloques privados separados para la casa matriz y la sucursal.
 - Se dejaron WLAN, invitados e IoT inalámbrico como decisiones pendientes.
+
+### 2026-10-25
+
+- Se implementó la primera etapa de la casa matriz en
+  `packet-tracer/redes-corporativas-etapa-01-lan.pkt`.
+- Se configuraron VLAN 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 y 110.
+- Se verificó el enrutamiento inter-VLAN mediante subinterfaces
+  `G0/0.10` a `G0/0.110`.
+- Se validó la VLAN 90 con un PC temporal porque la webcam IoT no aprendió
+  una dirección MAC en el switch.
+- Quedan pendientes SSH, ACL, DHCP, servicios, DMZ, OSPF, NAT/PAT y VPN.

@@ -55,6 +55,8 @@ La propuesta deberá demostrar el problema del cliente, la solución técnica, s
 - `documentacion/04-seguridad-perimetral-y-vpn.md`: DMZ, VPN IPsec, NAT/PAT y ACL.
 - `documentacion/05-matriz-de-trafico-y-politicas.md`: flujos permitidos,
   bloqueos, SSID y criterios de prueba.
+- `packet-tracer/redes-corporativas-etapa-01-lan.pkt`: primera etapa funcional
+  de la casa matriz con VLAN y enrutamiento inter-VLAN.
 - `CONTRIBUTING.md`: flujo de trabajo para colaborar en el repositorio.
 - `CLAUDE.md`: instrucciones comunes para asistentes de IA que trabajen en el proyecto.
 
@@ -77,7 +79,8 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [x] Definir VLAN, departamentos y direccionamiento IP.
 - [x] Diseñar DMZ, VPN, NAT y ACL.
 - [x] Definir la matriz inicial de tráfico y políticas de acceso.
-- [ ] Implementar la red en Packet Tracer.
+- [x] Implementar la primera etapa de VLAN y enrutamiento inter-VLAN.
+- [ ] Completar la red en Packet Tracer.
 - [ ] Ejecutar pruebas y recopilar evidencias.
 - [ ] Preparar presupuesto y cotizaciones.
 - [ ] Redactar informe técnico.
@@ -99,3 +102,14 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - Se documentó el diseño preliminar de DMZ, VPN IPsec, NAT/PAT y ACL.
 - Se solicitó verificar y crear el archivo `CLAUDE.md` con instrucciones
   comunes para las distintas IA que utilizarán los integrantes.
+
+### 2026-10-25
+
+- Se implementó la primera etapa de la casa matriz en Packet Tracer.
+- Se configuraron y probaron las VLAN 10, 20, 30, 40, 50, 60, 70, 80, 90,
+  100 y 110.
+- Se verificó el enrutamiento inter-VLAN con subinterfaces del router.
+- La VLAN 90 quedó validada temporalmente con un PC mientras se selecciona un
+  dispositivo IoT compatible.
+- Se documentó que aún faltan SSH, ACL, DHCP, OSPF, NAT/PAT, DMZ, VPN y la
+  topología de la sucursal.

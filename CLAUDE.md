@@ -83,3 +83,12 @@ automáticamente cambios internos de archivos binarios.
 - `documentacion/04-seguridad-perimetral-y-vpn.md`: seguridad y VPN.
 - `documentacion/05-matriz-de-trafico-y-politicas.md`: reglas de tráfico,
   SSID y criterios de prueba.
+
+## Estado actual de Packet Tracer
+
+El archivo `packet-tracer/redes-corporativas-etapa-01-lan.pkt` contiene una
+primera etapa funcional de la casa matriz: un router, un switch 2960 y VLAN
+10, 20, 30, 40, 50, 60, 70, 80, 90, 100 y 110 con enrutamiento inter-VLAN.
+La VLAN 90 fue probada temporalmente con un PC porque la webcam IoT utilizada
+no aprendió una dirección MAC en el switch. Antes de continuar, guardar el
+archivo `.pkt` en Packet Tracer.
