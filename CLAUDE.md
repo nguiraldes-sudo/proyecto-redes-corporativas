@@ -92,3 +92,12 @@ primera etapa funcional de la casa matriz: un router, un switch 2960 y VLAN
 La VLAN 90 fue probada temporalmente con un PC porque la webcam IoT utilizada
 no aprendió una dirección MAC en el switch. Antes de continuar, guardar el
 archivo `.pkt` en Packet Tracer.
+
+También se configuró SSH en el router y el switch, con administración desde la
+VLAN 110. Se creó una ACL para bloquear el acceso de la VLAN 100 a las redes
+internas, manteniendo disponible su gateway y dejando una excepción para DHCP.
+DHCP está configurado y probado en las VLAN 10, 20, 30, 40, 50 y 60; la VLAN
+100 también obtiene dirección después de permitir DHCP en su ACL. La VLAN 70
+de servidores y la VLAN 110 de gestión conservan direccionamiento manual.
+La VLAN 80 tiene su pool DHCP creado, pero la asignación automática al teléfono
+IP todavía debe validarse.
