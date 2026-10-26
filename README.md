@@ -113,5 +113,9 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
   dispositivo IoT compatible.
 - DHCP quedó probado en las VLAN de usuarios, invitados y voz; el teléfono IP
   recibió `10.10.80.11`.
-- Se documentó que aún faltan SSH, ACL, DHCP, OSPF, NAT/PAT, DMZ, VPN y la
-  topología de la sucursal.
+- OSPF formó vecindades entre los routers ISP y ambas sedes; el ping entre la
+  sucursal y la matriz funciona.
+- La VPN IPsec quedó como diseño documentado, pero no se pudo implementar con
+  el IOS disponible porque no soporta `crypto isakmp` ni `crypto ipsec`.
+- Aún faltan completar pruebas, evidencias, presupuesto, informe y
+  presentación.

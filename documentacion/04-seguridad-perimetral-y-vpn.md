@@ -167,6 +167,19 @@ el tráfico y una DMZ no protege por sí sola los servidores.
 - Especificar la matriz final de ACL.
 - Validar cómo se implementará la excepción de NAT para la VPN.
 
+## 9. Resultado de la implementación en Packet Tracer
+
+Se comprobó conectividad entre la matriz y la sucursal mediante rutas
+aprendidas por OSPF. Sin embargo, el router de sucursal utilizado en Packet
+Tracer no reconoce `crypto isakmp` ni `crypto ipsec`; al ejecutar `crypto ?`
+solo ofrece operaciones de claves (`crypto key`).
+
+Por esta limitación del IOS simulado, IPsec queda como parte del diseño
+requerido y documentado, pero no como una función demostrada en el archivo
+`.pkt`. La conectividad entre sedes se mantiene mediante OSPF para validar el
+enrutamiento. En una implementación real se debe seleccionar un equipo con
+soporte explícito para IKE/ISAKMP e IPsec.
+
 ## Resumen para la defensa oral
 
 > La red separa los servicios públicos en una DMZ, protege la comunicación

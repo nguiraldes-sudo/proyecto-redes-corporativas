@@ -102,3 +102,9 @@ también obtiene dirección después de permitir DHCP en su ACL. La VLAN 70 de
 servidores y la VLAN 110 de gestión conservan direccionamiento manual. La VLAN
 90 todavía usa un PC temporal para la prueba y puede requerir DHCP cuando se
 seleccione un dispositivo IoT compatible.
+
+La topología también incluye `ISP-1`, `ISP-2` y `R-SUCURSAL`. OSPF formó
+vecindades FULL entre los routers y el ping entre `PC-SUCURSAL` y la red
+`10.10.10.0/27` funciona. La VPN IPsec no pudo configurarse en `R-SUCURSAL`
+porque su IOS solo ofrece `crypto key` y no soporta `crypto isakmp` ni
+`crypto ipsec`; esta limitación debe explicarse en el informe.
