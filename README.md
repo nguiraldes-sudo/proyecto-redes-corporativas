@@ -122,6 +122,14 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - Aún faltan completar pruebas, evidencias, presupuesto, informe y
   presentación.
 
+### 2026-10-26
+
+- Se verificó la conectividad DHCP de la sucursal, incluyendo el teléfono IP
+  en la VLAN 80 con la dirección `10.20.80.3`.
+- Se confirmó que los equipos de la sucursal están operativos.
+- Queda pendiente aplicar el hardening de port-security, PortFast y BPDU Guard
+  en `SW-S-ACC0`; todavía no se aplicó esa configuración.
+
 ### Convención de nombres
 
 Los equipos se nombran con sede y función: `R-MATRIZ`, `R-SUCURSAL`,

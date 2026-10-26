@@ -126,3 +126,11 @@ Los nuevos equipos de la matriz usarán `SW-M1-CORE`, `SW-M2-CORE`,
 `PC-S-ADMIN`, `PC-S-RRHH`, `PC-S-ING`, `PC-S-OPER`, `PC-S-VENTAS`,
 `PC-S-GERENCIA`, `SRV-SERVICIOS-S`, `PHONE-S-GERENCIA`,
 `IOT-S-CAMARA` y `AP-S-GENERAL`.
+
+## Punto de pausa: 2026-10-26
+
+- La conectividad y DHCP de los equipos de la sucursal fueron verificados.
+- `PHONE-S-GERENCIA` recibió `10.20.80.3` en la VLAN 80.
+- El siguiente paso es aplicar hardening en `SW-S-ACC0`.
+- No se aplicó todavía la configuración de port-security, PortFast ni BPDU
+  Guard en ese switch.
