@@ -11,7 +11,10 @@ mezclar redes que deberían estar separadas.
 
 ## 2. Arquitectura general
 
-La solución tendrá dos sedes conectadas a través de una red ISP simulada:
+La solución tendrá dos sedes conectadas a través de una red ISP simulada. La
+captura actual representa una versión de trabajo de la topología física; aún
+faltan algunos enlaces de cobre, por lo que no debe considerarse la versión
+final del archivo `.pkt`.
 
 ```text
 Casa matriz ── Router ISP 1 ── Router ISP 2 ── Sucursal
@@ -86,7 +89,56 @@ ACL que las conexiones cableadas.
 Los servicios que deban publicarse se ubicarán en la DMZ. Los servicios de
 infraestructura interna pueden ubicarse en una VLAN de servidores protegida.
 
-## 4. Diagrama lógico preliminar
+## 4. Topología física observada en la versión de trabajo
+
+### Casa matriz
+
+En la parte izquierda de la captura se observan:
+
+- `R-HQ`: router perimetral de la casa matriz.
+- `CORE-HQ1` y `CORE-HQ2`: dos switches multicapa Catalyst 3650-24PS.
+- `SW-DMZ`: switch de la DMZ, conectado a seis servidores.
+- Tres switches de acceso para usuarios y dispositivos finales.
+- Computadores, impresoras, teléfonos IP, cámaras/webcam y termostatos IoT.
+- Un access point conectado a uno de los switches de acceso.
+
+Los dos switches core aparecen interconectados y enlazados con los switches
+de acceso. `R-HQ` tiene conexiones visibles hacia el bloque core y hacia
+`SW-DMZ`. La captura todavía requiere completar y revisar algunos enlaces de
+cobre antes de validar la redundancia y la conectividad total.
+
+### Red ISP simulada
+
+En la parte superior central se observan `R-HQ`, `ISP1`, `ISP2` y `R-SUC`.
+También aparece un computador externo conectado a `ISP1` para representar una
+prueba desde Internet.
+
+Esta cadena representa el tránsito entre las sedes y el acceso externo
+simulado. Los enlaces entre routers deberán revisarse en Packet Tracer junto
+con el tipo de cable y el estado de las interfaces.
+
+### Sucursal
+
+En la parte derecha se observan:
+
+- `R-SUC`: router perimetral de la sucursal.
+- `CORE-S1` y `CORE-S2`: dos switches multicapa Catalyst 3650-24PS.
+- Dos switches de acceso.
+- Computadores, impresoras, teléfonos IP, webcam y termostato IoT.
+
+Los dos cores aparecen en el diagrama, pero algunos no tienen todavía todos
+sus enlaces visibles. La conexión entre `R-SUC`, los cores y los switches de
+acceso debe completarse antes de iniciar las pruebas de redundancia, OSPF y
+segmentación.
+
+### Estado visual provisional
+
+- Los enlaces negros representan conexiones de cobre Ethernet visibles.
+- Los equipos sin cable visible todavía no se consideran integrados.
+- La vista de Packet Tracer debe complementarse con `show cdp neighbors` y
+  `show interfaces status` para validar conexiones y estados.
+
+## 5. Diagrama lógico preliminar
 
 ```text
                          ┌──────────────┐
@@ -113,7 +165,7 @@ infraestructura interna pueden ubicarse en una VLAN de servidores protegida.
           invitados e IoT               invitados e IoT
 ```
 
-## 5. Separación de redes
+## 6. Separación de redes
 
 Cada departamento tendrá una VLAN independiente. La VLAN es una separación
 lógica: permite que varios grupos compartan switches físicos sin quedar en la
@@ -132,7 +184,7 @@ También se reservarán VLAN para:
 La lista y el direccionamiento exactos se definirán en el siguiente documento,
 después de revisar la cantidad de usuarios y el crecimiento esperado.
 
-## 6. Recorrido de algunos tráficos
+## 7. Recorrido de algunos tráficos
 
 ### Usuario interno hacia Internet
 
@@ -159,8 +211,11 @@ Internet → router/firewall matriz → regla publicada
 El tráfico externo no debe saltar desde Internet directamente hacia las VLAN
 de usuarios.
 
-## 7. Decisiones pendientes
+## 8. Decisiones pendientes
 
+- Completar los enlaces de cobre que faltan en la captura de trabajo.
+- Confirmar qué puertos físicos conectan cada router, core y switch de acceso.
+- Verificar los enlaces entre routers y su estado operativo.
 - Modelo exacto de router o firewall disponible en Packet Tracer.
 - Cantidad final de access points y teléfonos.
 - Si la DMZ será centralizada en la casa matriz o existirá en ambas sedes.
@@ -169,7 +224,7 @@ de usuarios.
 - Reglas detalladas de ACL.
 - Validar qué funciones Wireless permite demostrar Packet Tracer 9.0.
 
-## 8. Convención de nombres
+## 9. Convención de nombres
 
 Para que el diagrama y la configuración sean fáciles de leer, los nombres
 identifican la sede y la función del equipo:
@@ -187,7 +242,7 @@ identifican la sede y la función del equipo:
 La topología completa se construirá como una segunda versión del archivo
 `.pkt`, sin sobrescribir `redes-corporativas-etapa-01-lan.pkt`.
 
-## 8. Conceptos aprendidos
+## 10. Conceptos aprendidos
 
 - **Topología física:** ubicación y conexión material de los dispositivos.
 - **Topología lógica:** VLAN, subredes, rutas y políticas que determinan cómo
@@ -208,3 +263,13 @@ La topología completa se construirá como una segunda versión del archivo
 - Se documentaron los recorridos de tráfico principales.
 - Se incorporó Wireless como componente opcional, manteniendo la infraestructura
   principal conectada por cobre.
+
+### 2026-10-27
+
+- Se actualizó el diseño con base en una captura de la topología física de
+  trabajo.
+- Se identificaron `R-HQ`, `ISP1`, `ISP2`, `R-SUC`, dos cores por sede,
+  `SW-DMZ`, switches de acceso, servidores, usuarios, telefonía e IoT.
+- La captura todavía no representa la versión final: faltan algunos cables de
+  cobre y deben verificarse los enlaces de routers y cores antes de declarar
+  completa la topología.

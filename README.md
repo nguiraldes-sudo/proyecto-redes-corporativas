@@ -82,7 +82,8 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [x] Diseñar DMZ, VPN, NAT y ACL.
 - [x] Definir la matriz inicial de tráfico y políticas de acceso.
 - [x] Implementar la primera etapa de VLAN y enrutamiento inter-VLAN.
-- [ ] Construir la topología completa en Packet Tracer.
+- [ ] Completar la topología física en Packet Tracer, incluyendo los enlaces de
+  cobre pendientes entre routers, cores y switches de acceso.
 - [ ] Ejecutar pruebas y recopilar evidencias.
 - [ ] Preparar presupuesto y cotizaciones.
 - [ ] Redactar informe técnico.
@@ -129,6 +130,16 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - Se confirmó que los equipos de la sucursal están operativos.
 - Queda pendiente aplicar el hardening de port-security, PortFast y BPDU Guard
   en `SW-S-ACC0`; todavía no se aplicó esa configuración.
+
+### 2026-10-27
+
+- Se revisó una captura de una versión de trabajo de la topología física.
+- Se confirmó la presencia de `R-HQ`, `ISP1`, `ISP2`, `R-SUC`, dos switches
+  core por sede, `SW-DMZ`, switches de acceso, servidores, usuarios,
+  telefonía e IoT.
+- La captura aún no es final: faltan algunos cables de cobre y deben
+  verificarse los enlaces antes de validar la redundancia y comenzar las
+  pruebas definitivas.
 
 ### Convención de nombres
 
