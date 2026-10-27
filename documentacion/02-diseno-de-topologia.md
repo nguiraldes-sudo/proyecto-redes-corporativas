@@ -137,6 +137,9 @@ segmentación.
 - Los equipos sin cable visible todavía no se consideran integrados.
 - La vista de Packet Tracer debe complementarse con `show cdp neighbors` y
   `show interfaces status` para validar conexiones y estados.
+- Los nombres de los dispositivos finales siguen siendo los nombres
+  predeterminados de Packet Tracer, como `Server-PT`, `PC-PT`,
+  `Printer-PT`, `IP Phone`, `Webcam` y `Thermostat`.
 
 ## 5. Diagrama lógico preliminar
 
@@ -157,7 +160,7 @@ segmentación.
                    │                           │
            ┌───────▼────────┐           ┌───────▼────────┐
            │ Core multilayer│           │ Core multilayer│
-           │ SW-M1 / SW-M2  │           │ SW-S1 / SW-S2  │
+           │ CORE-HQ1 / HQ2 │           │ CORE-S1 / CORE-S2│
            └───────┬────────┘           └───────┬────────┘
                    │                           │
           VLAN de usuarios,             VLAN de usuarios,
@@ -224,20 +227,23 @@ de usuarios.
 - Reglas detalladas de ACL.
 - Validar qué funciones Wireless permite demostrar Packet Tracer 9.0.
 
-## 9. Convención de nombres
+## 9. Nombres de la topología actual
 
-Para que el diagrama y la configuración sean fáciles de leer, los nombres
-identifican la sede y la función del equipo:
+La documentación debe utilizar los nombres que aparecen actualmente en
+`redes-corporativas-topologia-screenshot-2026-10-27.pkt`. No se deben usar
+los nombres de una convención futura mientras los dispositivos no hayan sido
+renombrados en Packet Tracer.
 
-- `R-MATRIZ` y `R-SUCURSAL`: routers perimetrales.
-- `ISP-1` y `ISP-2`: routers de la red externa simulada.
-- `SW-M*-CORE` y `SW-S*-CORE`: switches multicapa de núcleo.
-- `SW-M-ACC*` y `SW-S-ACC*`: switches de acceso.
-- `PC-M-*` y `PC-S-*`: computadores de matriz y sucursal.
-- `SRV-*`: servidores.
-- `PHONE-*`: teléfonos IP.
-- `IOT-*`: dispositivos IoT.
-- `AP-*`: access points opcionales.
+- `R-HQ` y `R-SUC`: routers perimetrales de matriz y sucursal.
+- `ISP1` y `ISP2`: routers de la red externa simulada.
+- `CORE-HQ1` y `CORE-HQ2`: switches multicapa de la casa matriz.
+- `CORE-S1` y `CORE-S2`: switches multicapa de la sucursal.
+- `SW-HQ-A1`, `SW-HQ-A2` y `SW-HQ-A3`: switches de acceso de la matriz.
+- `SW-S-A1` y `SW-S-A2`: switches de acceso de la sucursal.
+- `SW-DMZ`: switch de la zona DMZ.
+- `Server-PT`, `PC-PT`, `Printer-PT`, `IP Phone`, `Webcam` y `Thermostat`:
+  nombres predeterminados de los dispositivos finales observados.
+- `AccessPoint-PT`: access point observado en la matriz.
 
 La topología completa se construirá como una segunda versión del archivo
 `.pkt`, sin sobrescribir `redes-corporativas-etapa-01-lan.pkt`.

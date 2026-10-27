@@ -103,34 +103,30 @@ servidores y la VLAN 110 de gestión conservan direccionamiento manual. La VLAN
 90 todavía usa un PC temporal para la prueba y puede requerir DHCP cuando se
 seleccione un dispositivo IoT compatible.
 
-La topología también incluye `ISP-1`, `ISP-2` y `R-SUCURSAL`. OSPF formó
+La topología también incluye `ISP1`, `ISP2` y `R-SUC`. OSPF formó
 vecindades FULL entre los routers y el ping entre `PC-SUCURSAL` y la red
-`10.10.10.0/27` funciona. La VPN IPsec no pudo configurarse en `R-SUCURSAL`
+`10.10.10.0/27` funciona. La VPN IPsec no pudo configurarse en `R-SUC`
 porque su IOS solo ofrece `crypto key` y no soporta `crypto isakmp` ni
 `crypto ipsec`; esta limitación debe explicarse en el informe.
 
-## Convención de nombres de la topología completa
+## Nombres de la topología actual
 
 La versión 2 se guardará como
 `packet-tracer/redes-corporativas-topologia-completa.pkt`, conservando la
 versión inicial como respaldo. Los equipos existentes de la matriz se
-identifican como `R-MATRIZ`, `SW-M-ACC0`, `PC-M-ADMIN1`,
-`PC-M-ADMIN2`, `PC-M-RRHH`, `PC-M-INGENIERIA`, `PC-M-OPERACIONES`,
-`PC-M-VENTAS`, `PC-M-GERENCIA`, `SRV-SERVICIOS-M`, `PHONE-M-ADMIN`,
-`IOT-M-PRUEBA`, `PC-M-GUEST` y `PC-M-GESTION`.
+identifican como `R-HQ`, `CORE-HQ1`, `CORE-HQ2`, `SW-HQ-A1`, `SW-HQ-A2`,
+`SW-HQ-A3` y `SW-DMZ`. La sucursal utiliza `R-SUC`, `CORE-S1`, `CORE-S2`,
+`SW-S-A1` y `SW-S-A2`. La red externa utiliza `ISP1` e `ISP2`.
 
-Los nuevos equipos de la matriz usarán `SW-M1-CORE`, `SW-M2-CORE`,
-`SW-M-ACC1`, `SW-M-ACC2`, `SRV-DMZ-M`, `PHONE-M-GERENCIA`,
-`IOT-M-CAMARA`, `AP-M-GENERAL` y `PC-M-SOPORTE`. En la sucursal se usarán
-`SW-S1-CORE`, `SW-S2-CORE`, `SW-S-ACC0`, `SW-S-ACC1`, `SW-S-ACC2`,
-`PC-S-ADMIN`, `PC-S-RRHH`, `PC-S-ING`, `PC-S-OPER`, `PC-S-VENTAS`,
-`PC-S-GERENCIA`, `SRV-SERVICIOS-S`, `PHONE-S-GERENCIA`,
-`IOT-S-CAMARA` y `AP-S-GENERAL`.
+Los dispositivos finales conservan los nombres predeterminados de Packet
+Tracer, como `Server-PT`, `PC-PT`, `Printer-PT`, `IP Phone`, `Webcam` y
+`Thermostat`. Los nombres planificados anteriormente no deben utilizarse como
+si ya fueran nombres configurados en el archivo.
 
 ## Punto de pausa: 2026-10-26
 
 - La conectividad y DHCP de los equipos de la sucursal fueron verificados.
 - `PHONE-S-GERENCIA` recibió `10.20.80.3` en la VLAN 80.
-- El siguiente paso es aplicar hardening en `SW-S-ACC0`.
+- El siguiente paso es aplicar hardening en `SW-S-A1`.
 - No se aplicó todavía la configuración de port-security, PortFast ni BPDU
   Guard en ese switch.

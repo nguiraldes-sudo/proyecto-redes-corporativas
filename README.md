@@ -129,7 +129,7 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
   en la VLAN 80 con la dirección `10.20.80.3`.
 - Se confirmó que los equipos de la sucursal están operativos.
 - Queda pendiente aplicar el hardening de port-security, PortFast y BPDU Guard
-  en `SW-S-ACC0`; todavía no se aplicó esa configuración.
+  en `SW-S-A1`; todavía no se aplicó esa configuración.
 
 ### 2026-10-27
 
@@ -143,7 +143,10 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 
 ### Convención de nombres
 
-Los equipos se nombran con sede y función: `R-MATRIZ`, `R-SUCURSAL`,
-`SW-M*-CORE`, `SW-S*-CORE`, `SW-M-ACC*`, `SW-S-ACC*`, `PC-M-*`, `PC-S-*`,
-`SRV-*`, `PHONE-*`, `IOT-*` y `AP-*`. La versión completa se construirá sin
-sobrescribir el archivo de la primera etapa.
+La versión actual utiliza los nombres visibles en Packet Tracer:
+`R-HQ`, `R-SUC`, `ISP1`, `ISP2`, `CORE-HQ1`, `CORE-HQ2`, `CORE-S1`,
+`CORE-S2`, `SW-HQ-A1`, `SW-HQ-A2`, `SW-HQ-A3`, `SW-S-A1`, `SW-S-A2` y
+`SW-DMZ`. Los dispositivos finales conservan nombres predeterminados como
+`Server-PT`, `PC-PT`, `Printer-PT`, `IP Phone`, `Webcam` y `Thermostat`.
+La documentación no debe usar nombres planificados que todavía no existan en
+el archivo `.pkt`.
