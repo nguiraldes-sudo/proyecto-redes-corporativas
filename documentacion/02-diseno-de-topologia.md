@@ -123,13 +123,15 @@ En la parte derecha se observan:
 
 - `R-SUC`: router perimetral de la sucursal.
 - `CORE-S1` y `CORE-S2`: dos switches multicapa Catalyst 3650-24PS.
-- Dos switches de acceso.
+- `SW-S-A1` y `SW-S-A2`: dos switches de acceso.
 - Computadores, impresoras, teléfonos IP, webcam y termostato IoT.
 
-Los dos cores aparecen en el diagrama, pero algunos no tienen todavía todos
-sus enlaces visibles. La conexión entre `R-SUC`, los cores y los switches de
-acceso debe completarse antes de iniciar las pruebas de redundancia, OSPF y
-segmentación.
+En esta versión del screenshot, `CORE-S1` y `CORE-S2` aparecen sin enlaces de
+cobre visibles hacia `R-SUC` ni hacia los switches de acceso. Los dispositivos
+finales están conectados a `SW-S-A1` y `SW-S-A2`, pero esos switches todavía no
+se observan conectados al bloque core. Por lo tanto, deben agregarse y
+verificarse los enlaces `R-SUC`–core, core–core y core–acceso antes de iniciar
+las pruebas de redundancia, OSPF y segmentación.
 
 ### Estado visual provisional
 
