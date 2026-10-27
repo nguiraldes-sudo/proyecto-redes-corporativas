@@ -104,7 +104,7 @@ servidores y la VLAN 110 de gestión conservan direccionamiento manual. La VLAN
 seleccione un dispositivo IoT compatible.
 
 La topología también incluye `ISP1`, `ISP2` y `R-SUC`. OSPF formó
-vecindades FULL entre los routers y el ping entre `PC-SUCURSAL` y la red
+vecindades FULL entre los routers y el ping entre un `PC-PT` de la sucursal y la red
 `10.10.10.0/27` funciona. La VPN IPsec no pudo configurarse en `R-SUC`
 porque su IOS solo ofrece `crypto key` y no soporta `crypto isakmp` ni
 `crypto ipsec`; esta limitación debe explicarse en el informe.
@@ -126,7 +126,7 @@ si ya fueran nombres configurados en el archivo.
 ## Punto de pausa: 2026-10-26
 
 - La conectividad y DHCP de los equipos de la sucursal fueron verificados.
-- `PHONE-S-GERENCIA` recibió `10.20.80.3` en la VLAN 80.
+- Un `IP Phone` de la sucursal recibió `10.20.80.3` en la VLAN 80.
 - El siguiente paso es aplicar hardening en `SW-S-A1`.
 - No se aplicó todavía la configuración de port-security, PortFast ni BPDU
   Guard en ese switch.
