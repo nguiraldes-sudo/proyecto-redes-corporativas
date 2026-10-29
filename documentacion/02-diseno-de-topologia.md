@@ -255,6 +255,7 @@ renombrados en Packet Tracer.
 
 ### Zona DMZ
 - `SW-DMZ`: switch de la zona DMZ, conectado a servidores públicos.
+- Servidores DMZ (captura actual): `DMZ`, `server1`, `server2`, `server3`, `server4`, `server5`, `server6`.
 
 ### Dispositivos finales (nombres predeterminados de Packet Tracer)
 - `Server-PT`, `PC-PT`, `Printer-PT`, `IP Phone`, `Webcam` y `Thermostat`.
