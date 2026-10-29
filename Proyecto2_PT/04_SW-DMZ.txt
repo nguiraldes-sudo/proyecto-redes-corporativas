@@ -1,0 +1,77 @@
+! ===================== SW-DMZ (2960-24TT) =====================
+enable
+configure terminal
+hostname SW-DMZ
+no ip domain-lookup
+service password-encryption
+enable secret Cisco123
+banner motd # Acceso solo para personal autorizado #
+!
+vtp mode transparent
+vlan 90
+ name DMZ
+vlan 99
+ name Gestion
+vlan 999
+ name Nativa
+exit
+spanning-tree mode rapid-pvst
+!
+! ---- Uplink a CORE-HQ1 G1/0/8 ----
+interface GigabitEthernet0/1
+ description Trunk a CORE-HQ1 G1/0/8 (VLAN 90,99)
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 90,99,999
+ no shutdown
+exit
+interface GigabitEthernet0/2
+ shutdown
+exit
+!
+! ---- Servidores (Fa0/1 HTTP, 2 DNS, 3 NTP, 4 Email, 5 Syslog, 6 AAA, 7 IoT) ----
+interface range FastEthernet0/1 - 7
+ description Servidores DMZ
+ switchport mode access
+ switchport access vlan 90
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ switchport port-security violation restrict
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+exit
+interface range FastEthernet0/8 - 24
+ description Sin uso
+ shutdown
+exit
+!
+interface Vlan99
+ ip address 10.10.1.167 255.255.255.240
+ no shutdown
+exit
+ip default-gateway 10.10.1.161
+!
+ip domain-name proyecto2.local
+username admin privilege 15 secret Cisco123
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+ip access-list standard ACL-GESTION
+ permit 10.10.1.64 0.0.0.31
+ permit 10.10.1.160 0.0.0.15
+ permit 10.20.0.224 0.0.0.31
+exit
+line console 0
+ login local
+ logging synchronous
+line vty 0 15
+ access-class ACL-GESTION in
+ login local
+ transport input ssh
+exit
+service timestamps log datetime msec
+ntp server 10.10.1.148
+logging host 10.10.1.150
+end
+write memory

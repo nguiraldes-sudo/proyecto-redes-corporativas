@@ -1,0 +1,203 @@
+! ===================== R-HQ (2911) =====================
+! NAT/PAT - IPsec - ACL - CME - DHCP de la Casa Matriz
+!
+! ---- PARTE A: licencias (pegar, esperar el reinicio y luego pegar la PARTE B) ----
+enable
+configure terminal
+license boot module c2900 technology-package securityk9
+yes
+license boot module c2900 technology-package uck9
+yes
+end
+write memory
+reload
+!
+! ---- PARTE B: configuracion ----
+enable
+configure terminal
+hostname R-HQ
+no ip domain-lookup
+service password-encryption
+enable secret Cisco123
+banner motd # Acceso solo para personal autorizado #
+!
+! ---- Interfaces ----
+interface Loopback0
+ description Fuente DHCP / CME
+ ip address 10.10.15.1 255.255.255.255
+interface GigabitEthernet0/0
+ description WAN a ISP1
+ ip address 200.10.10.2 255.255.255.252
+ ip nat outside
+ no shutdown
+interface GigabitEthernet0/1
+ description Enlace a CORE-HQ1 G1/0/1
+ ip address 10.10.2.1 255.255.255.252
+ ip nat inside
+ no shutdown
+interface GigabitEthernet0/2
+ description Enlace a CORE-HQ2 G1/0/1
+ ip address 10.10.2.5 255.255.255.252
+ ip nat inside
+ no shutdown
+exit
+!
+! ---- Enrutamiento ----
+ip route 0.0.0.0 0.0.0.0 200.10.10.1
+router ospf 1
+ router-id 1.1.1.1
+ passive-interface Loopback0
+ network 10.10.2.0 0.0.0.3 area 0
+ network 10.10.2.4 0.0.0.3 area 0
+ network 10.10.15.1 0.0.0.0 area 0
+ default-information originate
+exit
+!
+! ---- NAT/PAT (sin traducir el trafico hacia la Sucursal) ----
+ip access-list extended ACL-NAT
+ deny ip 10.10.0.0 0.0.15.255 10.20.0.0 0.0.7.255
+ permit ip 10.10.0.0 0.0.15.255 any
+exit
+ip nat inside source list ACL-NAT interface GigabitEthernet0/0 overload
+! Publicacion del servidor web de la DMZ hacia Internet
+ip nat inside source static tcp 10.10.1.146 80 200.10.10.2 80
+!
+! ---- VPN IPsec site-to-site (ISAKMP AES-256 / SHA / DH2 / PSK) ----
+crypto isakmp policy 10
+ encryption aes 256
+ hash sha
+ authentication pre-share
+ group 2
+ lifetime 86400
+exit
+crypto isakmp key VpnClave2026 address 200.20.20.2
+crypto ipsec transform-set TS-VPN esp-aes 256 esp-sha-hmac
+ip access-list extended ACL-VPN
+ permit ip 10.10.0.0 0.0.15.255 10.20.0.0 0.0.7.255
+exit
+crypto map CMAP-VPN 10 ipsec-isakmp
+ set peer 200.20.20.2
+ set transform-set TS-VPN
+ match address ACL-VPN
+exit
+!
+! ---- ACL de borde (entrada desde Internet) ----
+ip access-list extended ACL-OUTSIDE-IN
+ remark IPsec con R-SUC
+ permit udp host 200.20.20.2 host 200.10.10.2 eq 500
+ permit esp host 200.20.20.2 host 200.10.10.2
+ permit ip 10.20.0.0 0.0.7.255 10.10.0.0 0.0.15.255
+ remark Servidor web publicado
+ permit tcp any host 200.10.10.2 eq www
+ remark Retorno de conexiones internas
+ permit tcp any any established
+ permit icmp any any echo-reply
+ permit icmp any any unreachable
+ permit icmp any any ttl-exceeded
+ deny ip any any
+exit
+interface GigabitEthernet0/0
+ crypto map CMAP-VPN
+ ip access-group ACL-OUTSIDE-IN in
+exit
+!
+! ---- DHCP centralizado (los cores hacen relay a 10.10.15.1) ----
+ip dhcp excluded-address 10.10.1.129 10.10.1.133
+ip dhcp excluded-address 10.10.1.1 10.10.1.10
+ip dhcp excluded-address 10.10.1.30
+ip dhcp excluded-address 10.10.1.33 10.10.1.42
+ip dhcp excluded-address 10.10.1.65 10.10.1.74
+ip dhcp excluded-address 10.10.0.1 10.10.0.10
+ip dhcp excluded-address 10.10.0.120
+ip dhcp excluded-address 10.10.0.129 10.10.0.138
+ip dhcp excluded-address 10.10.0.193 10.10.0.202
+ip dhcp excluded-address 10.10.1.97 10.10.1.106
+ip dhcp pool V10-GERENCIA
+ network 10.10.1.128 255.255.255.240
+ default-router 10.10.1.129
+ dns-server 10.10.1.147
+ domain-name proyecto2.local
+ip dhcp pool V20-FINANZAS
+ network 10.10.1.0 255.255.255.224
+ default-router 10.10.1.1
+ dns-server 10.10.1.147
+ domain-name proyecto2.local
+ip dhcp pool V30-RRHH
+ network 10.10.1.32 255.255.255.224
+ default-router 10.10.1.33
+ dns-server 10.10.1.147
+ domain-name proyecto2.local
+ip dhcp pool V40-TI
+ network 10.10.1.64 255.255.255.224
+ default-router 10.10.1.65
+ dns-server 10.10.1.147
+ domain-name proyecto2.local
+ip dhcp pool V50-VENTAS
+ network 10.10.0.0 255.255.255.128
+ default-router 10.10.0.1
+ dns-server 10.10.1.147
+ domain-name proyecto2.local
+ip dhcp pool V60-OPERACIONES
+ network 10.10.0.128 255.255.255.192
+ default-router 10.10.0.129
+ dns-server 10.10.1.147
+ domain-name proyecto2.local
+ip dhcp pool V70-VOZ
+ network 10.10.0.192 255.255.255.192
+ default-router 10.10.0.193
+ option 150 ip 10.10.15.1
+ dns-server 10.10.1.147
+ip dhcp pool V80-IOT
+ network 10.10.1.96 255.255.255.224
+ default-router 10.10.1.97
+ dns-server 10.10.1.147
+exit
+!
+! ---- Telefonia IP (CME) ext 1001-1003 ----
+telephony-service
+ max-ephones 5
+ max-dn 5
+ ip source-address 10.10.15.1 port 2000
+ auto assign 1 to 3
+exit
+ephone-dn 1
+ number 1001
+exit
+ephone-dn 2
+ number 1002
+exit
+ephone-dn 3
+ number 1003
+exit
+! Llamadas a la Sucursal (20xx) por el tunel IPsec
+dial-peer voice 1 voip
+ destination-pattern 200.
+ session target ipv4:10.20.7.1
+exit
+!
+! ---- Gestion: SSH + AAA + NTP + Syslog ----
+ip domain-name proyecto2.local
+username admin privilege 15 secret Cisco123
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+aaa new-model
+tacacs-server host 10.10.1.151 key Tacacs123
+aaa authentication login default local
+aaa authentication login AUTH-SSH group tacacs+ local
+ip access-list standard ACL-GESTION
+ permit 10.10.1.64 0.0.0.31
+ permit 10.10.1.160 0.0.0.15
+ permit 10.20.0.224 0.0.0.31
+exit
+line console 0
+ logging synchronous
+line vty 0 4
+ access-class ACL-GESTION in
+ login authentication AUTH-SSH
+ transport input ssh
+exit
+service timestamps log datetime msec
+ntp server 10.10.1.148
+logging host 10.10.1.150
+end
+write memory

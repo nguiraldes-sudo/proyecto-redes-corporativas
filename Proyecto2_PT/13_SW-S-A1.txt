@@ -1,0 +1,102 @@
+! ===================== SW-S-A1 (2960-24TT) =====================
+enable
+configure terminal
+hostname SW-S-A1
+no ip domain-lookup
+service password-encryption
+enable secret Cisco123
+banner motd # Acceso solo para personal autorizado #
+!
+vtp mode transparent
+vlan 10
+ name Gerencia
+vlan 20
+ name Finanzas
+vlan 30
+ name RRHH
+vlan 40
+ name TI
+vlan 50
+ name Ventas
+vlan 60
+ name Operaciones
+vlan 70
+ name Voz
+vlan 80
+ name IoT
+vlan 99
+ name Gestion
+vlan 999
+ name Nativa
+exit
+spanning-tree mode rapid-pvst
+!
+interface range GigabitEthernet0/1 - 2
+ description Trunk a CORE-S1 (G0/1) y CORE-S2 (G0/2)
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,80,99,999
+ no shutdown
+exit
+interface FastEthernet0/1
+ description PC-Gerencia
+ switchport mode access
+ switchport access vlan 10
+interface FastEthernet0/2
+ description PC-Finanzas
+ switchport mode access
+ switchport access vlan 20
+interface FastEthernet0/3
+ description PC-RRHH
+ switchport mode access
+ switchport access vlan 30
+interface FastEthernet0/4
+ description Impresora-Fin
+ switchport mode access
+ switchport access vlan 20
+interface FastEthernet0/5
+ description Tel-IP-4 ext 2001
+ switchport mode access
+  switchport voice vlan 70
+interface range FastEthernet0/1 - 5
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security mac-address sticky
+ switchport port-security violation restrict
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+exit
+interface range FastEthernet0/6 - 24
+ description Sin uso
+ shutdown
+exit
+!
+interface Vlan99
+ ip address 10.20.1.36 255.255.255.240
+ no shutdown
+exit
+ip default-gateway 10.20.1.33
+!
+ip domain-name proyecto2.local
+username admin privilege 15 secret Cisco123
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+ip access-list standard ACL-GESTION
+ permit 10.10.1.64 0.0.0.31
+ permit 10.20.1.32 0.0.0.15
+ permit 10.20.0.224 0.0.0.31
+exit
+line console 0
+ login local
+ logging synchronous
+line vty 0 15
+ access-class ACL-GESTION in
+ login local
+ transport input ssh
+exit
+service timestamps log datetime msec
+ntp server 10.10.1.148
+logging host 10.10.1.150
+end
+write memory

@@ -241,7 +241,8 @@ renombrados en Packet Tracer.
 - `CORE-HQ1` y `CORE-HQ2`: switches multicapa de la casa matriz.
 - `CORE-S1` y `CORE-S2`: switches multicapa de la sucursal.
 - `SW-HQ-A1`, `SW-HQ-A2` y `SW-HQ-A3`: switches de acceso de la matriz.
-- `SW-S-A1` y `SW-S-A2`: switches de acceso de la sucursal.
+- `SW-S-A1` y `SW-S-A2`: switches de acceso de la sucursal (VTP transparent,
+  VLAN 99 gestión, Port-security activado, PortFast/BPDU Guard enableados).
 - `SW-DMZ`: switch de la zona DMZ.
 - `Server-PT`, `PC-PT`, `Printer-PT`, `IP Phone`, `Webcam` y `Thermostat`:
   nombres predeterminados de los dispositivos finales observados.

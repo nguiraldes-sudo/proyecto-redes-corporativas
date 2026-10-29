@@ -82,6 +82,7 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [x] Diseñar DMZ, VPN, NAT y ACL.
 - [x] Definir la matriz inicial de tráfico y políticas de acceso.
 - [x] Implementar la primera etapa de VLAN y enrutamiento inter-VLAN.
+- [x] **Actualizar configuraciones con archivo Proyecto2_PT (nueva versión con VPN, port-security, VLAN 99 gestión, HSRP v2).**
 - [ ] Completar la topología física en Packet Tracer, incluyendo los enlaces de
   cobre pendientes entre routers, cores y switches de acceso.
 - [ ] Ejecutar pruebas y recopilar evidencias.

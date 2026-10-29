@@ -160,12 +160,16 @@ el tráfico y una DMZ no protege por sí sola los servidores.
 
 ## 8. Decisiones pendientes
 
-- Confirmar qué equipos de Packet Tracer soportan la VPN requerida.
+- **VPN IPsec:** Ya configurada en R-HQ y R-SUC con IKE/AES-256/SHA/DH2/PSK. 
+  El router IOS simulado en Packet Tracer 9.0 soporta ahora `crypto isakmp`
+  y `crypto ipsec` (a diferencia de la versión previa). Ver documento 04 para
+  detalles de configuración.
 - Definir si la DMZ será solo en la casa matriz o en ambas sedes.
 - Confirmar los servicios que realmente se simularán.
 - Definir las IP públicas simuladas de los routers perimetrales.
 - Especificar la matriz final de ACL.
-- Validar cómo se implementará la excepción de NAT para la VPN.
+- Validar cómo se implementará la excepción de NAT para la VPN (NAT exemptión
+  para tráfico entre sedes).
 
 ## 9. Resultado de la implementación en Packet Tracer
 

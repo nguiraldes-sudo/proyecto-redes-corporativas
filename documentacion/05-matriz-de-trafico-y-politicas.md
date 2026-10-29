@@ -10,6 +10,10 @@ corresponda, controles de la WLAN.
 La política general es **mínimo privilegio**: todo tráfico no descrito como
 permitido debe considerarse bloqueado.
 
+**Estado actual:** Las configuraciones de R-HQ y R-SUC (archivo Proyecto2_PT)
+ya incluyen políticas NAT/PAT con excepción de VPN, ACLs perimetrales y
+enrutamiento OSPF activo. Ver documentos de configuración de routers y switches.
+
 ## 2. Zonas y redes involucradas
 
 | Zona | Redes principales | Función |

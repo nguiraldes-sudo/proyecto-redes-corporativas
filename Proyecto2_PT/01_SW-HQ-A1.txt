@@ -1,0 +1,111 @@
+! ===================== SW-HQ-A1 (2960-24TT) =====================
+! Pegar en la CLI del switch (modo usuario: Switch>)
+enable
+configure terminal
+hostname SW-HQ-A1
+no ip domain-lookup
+service password-encryption
+enable secret Cisco123
+banner motd # Acceso solo para personal autorizado #
+!
+! ---- VLANs ----
+vtp mode transparent
+vlan 10
+ name Gerencia
+vlan 20
+ name Finanzas
+vlan 30
+ name RRHH
+vlan 40
+ name TI
+vlan 50
+ name Ventas
+vlan 60
+ name Operaciones
+vlan 70
+ name Voz
+vlan 80
+ name IoT
+vlan 90
+ name DMZ
+vlan 99
+ name Gestion
+vlan 999
+ name Nativa
+exit
+spanning-tree mode rapid-pvst
+!
+! ---- Uplinks a los cores ----
+interface range GigabitEthernet0/1 - 2
+ description Trunk a CORE-HQ1 (G0/1) y CORE-HQ2 (G0/2)
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,80,99,999
+ no shutdown
+exit
+!
+! ---- Puertos de acceso ----
+interface FastEthernet0/1
+ description PC-Gerencia
+ switchport mode access
+ switchport access vlan 10
+interface FastEthernet0/2
+ description PC-Finanzas
+ switchport mode access
+ switchport access vlan 20
+interface FastEthernet0/3
+ description Impresora-Fin
+ switchport mode access
+ switchport access vlan 20
+interface FastEthernet0/4
+ description Tel-IP-1 ext 1001
+ switchport mode access
+ switchport voice vlan 70
+ no switchport port-security mac-address sticky
+ switchport port-security maximum 3
+ switchport port-security mac-address sticky
+ no shutdown
+interface range FastEthernet0/1 - 4
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security mac-address sticky
+ switchport port-security violation restrict
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+exit
+interface range FastEthernet0/5 - 24
+ description Sin uso
+ shutdown
+exit
+!
+! ---- Gestion ----
+interface Vlan99
+ ip address 10.10.1.164 255.255.255.240
+ no shutdown
+exit
+ip default-gateway 10.10.1.161
+!
+! ---- SSH / NTP / Syslog ----
+ip domain-name proyecto2.local
+username admin privilege 15 secret Cisco123
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+ip access-list standard ACL-GESTION
+ permit 10.10.1.64 0.0.0.31
+ permit 10.10.1.160 0.0.0.15
+ permit 10.20.0.224 0.0.0.31
+exit
+line console 0
+ login local
+ logging synchronous
+line vty 0 15
+ access-class ACL-GESTION in
+ login local
+ transport input ssh
+exit
+service timestamps log datetime msec
+ntp server 10.10.1.148
+logging host 10.10.1.150
+end
+write memory

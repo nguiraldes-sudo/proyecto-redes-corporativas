@@ -1,0 +1,54 @@
+===================== SERVIDORES DMZ (VLAN 90) =====================
+Todos: Desktop > IP Configuration > Static
+  Mascara 255.255.255.240 | Gateway 10.10.1.145 | DNS 10.10.1.147
+
+Srv-HTTP   10.10.1.146  Services > HTTP: ON (HTTP y HTTPS). Editar index.html (pagina "Proyecto 2").
+Srv-DNS    10.10.1.147  Services > DNS: ON. Registros tipo A:
+                          www.proyecto2.local     10.10.1.146
+                          dns.proyecto2.local     10.10.1.147
+                          ntp.proyecto2.local     10.10.1.148
+                          mail.proyecto2.local    10.10.1.149
+                          syslog.proyecto2.local  10.10.1.150
+                          aaa.proyecto2.local     10.10.1.151
+                          iot.proyecto2.local     10.10.1.152
+Srv-NTP    10.10.1.148  Services > NTP: ON, Authentication: Disable.
+Srv-Email  10.10.1.149  Services > EMAIL: SMTP ON, POP3 ON, Domain Name: proyecto2.local
+                          Usuarios: gerencia/Cisco123, ventas/Cisco123, ti/Cisco123 (Add)
+Srv-Syslog 10.10.1.150  Services > SYSLOG: ON.
+Srv-AAA    10.10.1.151  Services > AAA: ON.
+                          Network Configuration (Client Name / Client IP / Secret / Type):
+                            R-HQ-1    10.10.2.1    Tacacs123  Tacacs
+                            R-HQ-2    10.10.2.5    Tacacs123  Tacacs
+                            CORE-HQ1  10.10.1.157  Tacacs123  Tacacs
+                            CORE-HQ2  10.10.1.158  Tacacs123  Tacacs
+                            CORE-S1   10.20.2.2    Tacacs123  Tacacs
+                            CORE-S2   10.20.2.6    Tacacs123  Tacacs
+                          User Setup: admin / Cisco123
+Srv-IoT    10.10.1.152  Services > IoT: ON. Desde un PC abrir http://10.10.1.152,
+                          "Sign up now" y crear la cuenta admin / Cisco123.
+
+===================== HOSTS =====================
+PCs y Laptop (ambas sedes): Desktop > IP Configuration > DHCP
+  (reciben IP, gateway HSRP y DNS 10.10.1.147 desde R-HQ / R-SUC)
+
+Impresoras (estaticas):
+  HQ  Impresora-Fin  10.10.1.30   /27 (255.255.255.224)  GW 10.10.1.1    DNS 10.10.1.147
+  HQ  Impresora-Ven  10.10.0.120  /25 (255.255.255.128)  GW 10.10.0.1    DNS 10.10.1.147
+  SUC Impresora-Fin  10.20.0.190  /27 (255.255.255.224)  GW 10.20.0.161  DNS 10.10.1.147
+  SUC Impresora-Ven  10.20.0.60   /26 (255.255.255.192)  GW 10.20.0.1    DNS 10.10.1.147
+
+Telefonos IP 7960: Physical > conectar IP_PHONE_POWER_ADAPTER. Se registran solos
+  (DHCP con option 150 -> CME). Ext HQ 1001-1003, Sucursal 2001-2002.
+
+Camara-IP y Termostato (ambas sedes, VLAN 80):
+  Config > Settings: IP DHCP
+  Config > IoT Server: Remote Server | Server Address 10.10.1.152 | User admin | Password Cisco123 | Connect
+  Ver/controlar desde un PC: navegador http://10.10.1.152 > IoT Monitor
+
+PC-Externo (Internet):
+  IP 200.40.40.2 | Mascara 255.255.255.252 | Gateway 200.40.40.1
+  Prueba: navegador http://200.10.10.2 (NAT estatico al Srv-HTTP)
+
+Correo en PCs: Desktop > Email > Configure Mail
+  Name: Gerencia | Email: gerencia@proyecto2.local | Incoming/Outgoing server: 10.10.1.149
+  User: gerencia | Password: Cisco123

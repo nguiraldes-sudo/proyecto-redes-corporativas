@@ -1,0 +1,23 @@
+! ===================== ISP1 (2911) =====================
+enable
+configure terminal
+hostname ISP1
+no ip domain-lookup
+enable secret Cisco123
+interface GigabitEthernet0/0
+ description A R-HQ
+ ip address 200.10.10.1 255.255.255.252
+ no shutdown
+interface GigabitEthernet0/1
+ description A ISP2
+ ip address 200.30.30.1 255.255.255.252
+ no shutdown
+interface GigabitEthernet0/2
+ description A PC-Externo
+ ip address 200.40.40.1 255.255.255.252
+ no shutdown
+exit
+! Los ISP solo conocen redes publicas
+ip route 200.20.20.0 255.255.255.252 200.30.30.2
+end
+write memory

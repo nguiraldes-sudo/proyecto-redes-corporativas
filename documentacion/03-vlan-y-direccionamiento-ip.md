@@ -69,9 +69,9 @@ subred cambia según la sede.
 | 70 | SERVIDORES | Servicios internos | `10.10.70.0/27` | `10.20.70.0/28` |
 | 80 | VOZ | Telefonía IP | `10.10.80.0/27` | `10.20.80.0/28` |
 | 90 | IOT | Cámaras y termostatos | `10.10.90.0/27` | `10.20.90.0/28` |
+| 99 | GESTION | Administración de red y switches | `10.10.99.0/28` | `10.20.99.0/28` |
 | 100 | GUEST | Invitados, si se autoriza | `10.10.100.0/27` | `10.20.100.0/28` |
-| 110 | GESTION | Administración de red | `10.10.110.0/28` | `10.20.110.0/28` |
-| 120 | DMZ | Servicios publicados | `10.10.120.0/28` | Pendiente |
+| 120 | DMZ | Servicios publicados | `10.10.120.0/28` | `10.20.120.0/28` |
 
 Las VLAN 100 y la conectividad asociada a dispositivos inalámbricos quedan
 condicionadas a la confirmación del profesor. La VLAN 90 puede implementarse
@@ -176,7 +176,8 @@ que la VLAN 90 se validó temporalmente con un PC.
 > independiente a cada una. La casa matriz y la sucursal utilizan bloques
 > privados distintos, lo que evita solapamientos y facilita el enrutamiento por
 > la VPN. El tamaño de cada subred se definió según la cantidad de usuarios y
-> el crecimiento esperado.
+> el crecimiento esperado. **Versión actualizada: VLAN 99 para gestión de red,
+> VLAN 120 para DMZ. Switches con port-security activado y VTP en modo transparent.**
 
 ## Bitácora
 
