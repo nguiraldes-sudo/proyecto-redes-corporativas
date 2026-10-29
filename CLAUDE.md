@@ -109,7 +109,7 @@ vecindades FULL entre los routers y el ping entre un `PC-PT` de la sucursal y la
 porque su IOS solo ofrece `crypto key` y no soporta `crypto isakmp` ni
 `crypto ipsec`; esta limitación debe explicarse en el informe.
 
-## Nombres de la topología actual
+### Nombres de la topología actual
 
 La versión 2 se guardará como
 `packet-tracer/redes-corporativas-topologia-completa.pkt`, conservando la
@@ -123,10 +123,34 @@ Tracer, como `Server-PT`, `PC-PT`, `Printer-PT`, `IP Phone`, `Webcam` y
 `Thermostat`. Los nombres planificados anteriormente no deben utilizarse como
 si ya fueran nombres configurados en el archivo.
 
+## Bitácora de la sesión actual (2026-10-29)
+
+### Tareas completadas
+
+- **Humanizer skill**: Aplicado a `/Users/NGJ/Desktop/Windows_Server_Conceptos.md` para eliminar patrones de escritura estilo IA (reestructura de línea de atribuciones, remoción de staging, cierres dramáticos y demás patrones identificados).
+- **Análisis de nombres de dispositivos**: Comparados los nombres que aparecen en la captura `redes-corporativas-topologia-screenshot-2026-10-27.pkt` contra la documentación existente en `documentacion/02-diseno-de-topologia.md`.
+- **Actualización de sección 9**: Reestructurada para incluir nombres de dispositivos categorizados (routers perimetrales, switches núcleo, switches de acceso, DMZ, dispositivos finales, access point).
+- **Incorporación de servidores DMZ**: Agregado oficialmente a la documentación: `DMZ`, `server1`, `server2`, `server3`, `server4`, `server5`, `server6` — consistente con la captura de Packet Tracer.
+- **Verificación de documentos auxiliares**: Revisados `03-vlan-y-direccionamiento-ip.md`, `04-seguridad-perimetral-y-vpn.md` y `05-matriz-de-trafico-y-politicas.md` — confirmado que no requieren cambios por usar IPs y roles en lugar de nombres de dispositivos.
+- **Operaciones git**: `git add`, `git commit` y `git push` realizados para el archivo `documentacion/02-diseno-de-topologia.md`, incluyendo el resumen de cambios en el mensaje de commit.
+
+### Cambios realizados
+
+1. `documentacion/02-diseno-de-topologia.md`: Sección 9 reestructurada con nombres de dispositivos por categorías; lista de 7 servidores DMZ agregada.
+2. No se realizaron cambios en `03`, `04` o `05` al no depender de nombres de dispositivos específicos.
+3. `Windows_Server_Conceptos.md`: Aplicado humanizer para eliminar patrones de escritura estilo IA (cambio menor en línea de atribuciones).
+
+### Próximos pasos para continuar
+
+- Retomar la configuración Packet Tracer en `packet-tracer/redes-corporativas-etapa-01-lan.pkt`.
+- Aplicar hardening en `SW-S-A1` (pendiente: port-security, PortFast, BPDU Guard).
+- Completar la topología con enlaces de cobre faltantes.
+- Configurar OSPF, VPN IPsec (explicar limitación de R-SUC), NAT/PAT, DMZ y ACLs.
+- Generar cotización y documento final.
+
 ## Punto de pausa: 2026-10-26
 
 - La conectividad y DHCP de los equipos de la sucursal fueron verificados.
 - Un `IP Phone` de la sucursal recibió `10.20.80.3` en la VLAN 80.
 - El siguiente paso es aplicar hardening en `SW-S-A1`.
-- No se aplicó todavía la configuración de port-security, PortFast ni BPDU
-  Guard en ese switch.
+- No se aplicó todavía la configuración de port-security, PortFast ni BPDU Guard en ese switch.
