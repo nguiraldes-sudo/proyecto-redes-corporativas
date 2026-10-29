@@ -236,17 +236,34 @@ La documentación debe utilizar los nombres que aparecen actualmente en
 los nombres de una convención futura mientras los dispositivos no hayan sido
 renombrados en Packet Tracer.
 
-- `R-HQ` y `R-SUC`: routers perimetrales de matriz y sucursal.
-- `ISP1` y `ISP2`: routers de la red externa simulada.
-- `CORE-HQ1` y `CORE-HQ2`: switches multicapa de la casa matriz.
-- `CORE-S1` y `CORE-S2`: switches multicapa de la sucursal.
-- `SW-HQ-A1`, `SW-HQ-A2` y `SW-HQ-A3`: switches de acceso de la matriz.
+### Routers perimetrales
+- `R-HQ`: router perimetral de la casa matriz.
+- `R-SUC`: router perimetral de la sucursal.
+
+### Red externa simulada
+- `ISP1`: router ISP (lado matriz).
+- `ISP2`: router ISP (lado sucursal).
+
+### Switches multicapa (núcleo)
+- `CORE-HQ1` y `CORE-HQ2`: switches multicapa Catalyst 3650-24PS de la casa matriz.
+- `CORE-S1` y `CORE-S2`: switches multicapa Catalyst 3650-24PS de la sucursal.
+
+### Switches de acceso
+- `SW-HQ-A1`, `SW-HQ-A2` y `SW-HQ-A3`: switches de acceso de la casa matriz.
 - `SW-S-A1` y `SW-S-A2`: switches de acceso de la sucursal (VTP transparent,
   VLAN 99 gestión, Port-security activado, PortFast/BPDU Guard enableados).
-- `SW-DMZ`: switch de la zona DMZ.
-- `Server-PT`, `PC-PT`, `Printer-PT`, `IP Phone`, `Webcam` y `Thermostat`:
-  nombres predeterminados de los dispositivos finales observados.
+
+### Zona DMZ
+- `SW-DMZ`: switch de la zona DMZ, conectado a servidores públicos.
+
+### Dispositivos finales (nombres predeterminados de Packet Tracer)
+- `Server-PT`, `PC-PT`, `Printer-PT`, `IP Phone`, `Webcam` y `Thermostat`.
+
+### Access point
 - `AccessPoint-PT`: access point observado en la matriz.
+
+La topología completa se construirá como una segunda versión del archivo
+`.pkt`, sin sobrescribir `redes-corporativas-etapa-01-lan.pkt`.
 
 La topología completa se construirá como una segunda versión del archivo
 `.pkt`, sin sobrescribir `redes-corporativas-etapa-01-lan.pkt`.
