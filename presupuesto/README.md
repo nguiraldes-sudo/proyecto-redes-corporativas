@@ -17,7 +17,7 @@ capacidad, soporte, seguridad, disponibilidad y crecimiento.
 | Categoría | Cantidad inicial | Requisitos |
 |---|---:|---|
 | Routers o firewalls perimetrales | 2 | VPN IPsec, NAT/PAT, ACL, alta disponibilidad o respaldo |
-| Switches multicapa | 4 | VLAN, OSPF, HSRP/VRRP, EtherChannel, PoE según necesidad |
+| Switches CORE multicapa | 4 | Todos deben ser Layer 3; VLAN, SVI, OSPF, HSRP/VRRP, EtherChannel y PoE según necesidad |
 | Switches de acceso | 5 o 6 | VLAN, PoE, port-security, STP, gestión SSH |
 | Access points | Por definir | WPA2/WPA3, SSID, VLAN, gestión centralizada |
 | Servidores | Por definir | Web, DNS, NTP, correo, Syslog, AAA e IoT |

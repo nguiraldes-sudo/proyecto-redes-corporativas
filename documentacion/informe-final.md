@@ -129,7 +129,7 @@ caída controlada.
 | Elemento | Caso base de la pauta | Topología oficial del proyecto | Observación |
 |---|---:|---:|---|
 | Servidores | 1 | 7 objetos de servidor en DMZ | Se virtualizarán o consolidarán comercialmente |
-| Switch central/multicapa | 1 | 4 | Dos por sede para redundancia |
+| Switch central | 1 switch central multicapa | 4 cores, todos multicapa (Layer 3) | Dos por sede para redundancia |
 | Switches de acceso/DMZ | 6 | 6 | Tres de acceso HQ, dos de acceso sucursal y uno DMZ |
 | Computadores | 42 | 15 PCs, 1 laptop y otros dispositivos | El `.pkt` no representa 42 PCs físicos |
 | Sedes | 1 | 2 | Ampliación propia del Proyecto 2 |
