@@ -84,6 +84,8 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [x] Definir VLAN, departamentos y direccionamiento IP.
 - [x] Diseñar DMZ, VPN, NAT y ACL.
 - [x] Definir la matriz inicial de tráfico y políticas de acceso.
+- [x] Definir un metrado preliminar de cableado para 42 PCs: 4 cajas de 305 m,
+  42 puntos RJ45/keystone, patch panel de 48 puertos y patch cords.
 - [x] Implementar la primera etapa de VLAN y enrutamiento inter-VLAN.
 - [x] **Actualizar configuraciones con archivo Proyecto2_PT (nueva versión con VPN, port-security, VLAN 99 gestión, HSRP v2).**
 - [x] Completar la estructura física principal en Packet Tracer, incluyendo
@@ -98,8 +100,11 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [ ] Verificar la negociación real de IPsec con `show crypto isakmp sa` y
   `show crypto ipsec sa`.
 - [ ] Ejecutar pruebas y recopilar evidencias.
-- [ ] Preparar presupuesto y cotizaciones.
-- [ ] Redactar informe técnico.
+- [x] Preparar presupuesto preliminar de equipamiento y materiales, separado de
+  la mano de obra.
+- [x] Redactar informe técnico base en Markdown y generar versión DOCX formal.
+- [ ] Confirmar mediante visita técnica las cantidades reales de cable,
+  canaleta, conectores, patch panel y accesorios.
 - [ ] Preparar presentación y defensa.
 
 ## Bitácora
@@ -167,6 +172,22 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
   almacenada, pero debe probarse en ejecución antes de declararla operativa.
 - Quedaron pendientes la corrección de IPs de la DMZ, la activación de
   servicios, la WLAN y la recopilación de evidencias.
+
+### 2026-11-03
+
+- Se confirmó que todos los switches CORE de la topología deben ser
+  multicapa/Layer 3.
+- Se actualizó el informe y el presupuesto para distinguir el caso base de la
+  rúbrica de la topología ampliada de dos sedes.
+- Se incorporó el presupuesto preliminar de equipamiento y materiales por
+  $30.878.464 IVA incluido, sin mezclar mano de obra.
+- Se agregó un metrado preliminar de cableado: 42 puntos, 42 keystones o
+  conectores RJ45 hembra, un patch panel de 48 puertos, 84 patch cords y
+  4 cajas de cable de 305 m.
+- La canaleta y las cantidades definitivas quedan condicionadas a una visita
+  técnica y a un plano de recorridos.
+- Se generó `documentacion/informe-final.docx` con portada, índice, estilos,
+  encabezado, pie de página y tablas.
 
 ### Convención de nombres
 

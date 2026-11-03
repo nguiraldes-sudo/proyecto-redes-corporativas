@@ -221,7 +221,7 @@ resultado esperado, resultado real, captura y responsable.
 | Archivo | `.pkt` de Cisco Packet Tracer 9.0 | Disponible |
 | Topología | Captura de topología completa | Pendiente |
 | Cantidades | Tabla comparativa con la pauta | Incluida en este informe |
-| Cableado | Cat6/Cat6A, racks, patch panels, PDU y UPS | Parcial; cotización pendiente |
+| Cableado | 42 puntos, 4 cajas Cat6/Cat6A, RJ45/keystone, patch panel, patch cords y canaleta | Metrado preliminar; validar en visita |
 | VLAN/IP | Tabla de VLAN, máscaras y gateways | Incluida |
 | Conectividad | Pings entre gateways, sedes y servicios | Pendiente |
 | Internet | Consumo estimado y enlace recomendado | Incluido en sección 10 |
@@ -302,6 +302,36 @@ La selección preliminar y el cálculo de referencia se encuentran en
 preliminar de equipamiento y materiales es de $30.878.464 IVA incluido. La
 mano de obra se agregará como un bloque separado según las tarifas y horas
 definidas.
+
+### 12.1 Metrado preliminar de cableado
+
+Como todavía no existe un plano definitivo con los recorridos de ambas sedes,
+las cantidades de cableado y canalización se presentan como una estimación
+académica, no como una medición final. Para los 42 computadores de la rúbrica
+se considera una distancia promedio de 25 m por punto y una reserva técnica
+del 15%:
+
+```text
+42 puntos × 25 m × 1,15 = 1.207,5 m de cable calculado
+4 cajas × 305 m = 1.220 m de cable comprado
+```
+
+| Material | Cantidad preliminar | Criterio |
+|---|---:|---|
+| Puntos de red | 42 | 7 computadores por cada uno de los 6 switches de acceso |
+| Cable Cat6/Cat6A | 4 cajas de 305 m | Cubre el cálculo de 1.207,5 m |
+| Keystone o RJ45 hembra | 42 | Un punto por computador |
+| Patch panel | 1 de 48 puertos | 42 puntos más reserva |
+| Patch cords de usuario | 42 | Uno por computador |
+| Patch cords de rack | 42 | Patch panel hacia switches |
+| Faceplates/cajas | 42 | Uno por punto |
+| Canaleta | Por medir | Depende de los recorridos reales |
+| Etiquetas y fijaciones | 1 lote | Consumibles de instalación |
+
+La canaleta no se calcula automáticamente como igual a los metros de cable:
+debe medirse siguiendo recorridos, subidas, bajadas, cruces, separación
+eléctrica y holgura. Estas cantidades se reemplazarán después de una visita
+técnica y del plano de recorridos.
 
 | Categoría | Modelo de referencia | Cantidad | Precio unitario IVA incl. | Subtotal IVA incl. |
 |---|---|---:|---:|---:|

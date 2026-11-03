@@ -47,7 +47,11 @@ formal con cada proveedor.
 
 - Se consideran dos firewalls, cuatro switches core y cinco switches de acceso.
 - Se consideran cuatro access points como referencia inicial.
-- La cantidad final de cable, patch panels, PDU, transceptores y canalización
-  debe confirmarse mediante el levantamiento físico.
+- Metrado preliminar para la rúbrica: 42 puntos, 4 cajas de cable de 305 m,
+  42 keystones/RJ45 hembra, un patch panel de 48 puertos, 84 patch cords y
+  42 faceplates/cajas.
+- La cantidad final de cable, patch panels, PDU, transceptores, faceplates y
+  canalización debe confirmarse mediante el levantamiento físico. La canaleta
+  se mide por recorrido real y no se presume igual a los metros de cable.
 - Los servicios de instalación, ingeniería, capacitación y soporte se
   presupuestarán por separado.

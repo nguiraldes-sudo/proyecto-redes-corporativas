@@ -65,6 +65,15 @@ WPA2/WPA3.
 
 ## 4. Mano de obra separada
 
+### Metrado preliminar de instalación
+
+Mientras no exista un plano de recorridos, se utiliza como base académica el
+caso de 42 computadores: 42 puntos, 25 m promedio por punto y 15% de reserva.
+El cálculo entrega 1.207,5 m de cable, que se redondea a 4 cajas de 305 m
+(1.220 m). Se consideran además 42 keystones/RJ45 hembra, un patch panel de
+48 puertos, 42 patch cords de usuario, 42 patch cords de rack y 42
+faceplates. La canaleta queda pendiente de medición en visita técnica.
+
 La referencia de cobros entregada contempla siete servicios:
 
 1. Diseño, ingeniería y gestión del proyecto.

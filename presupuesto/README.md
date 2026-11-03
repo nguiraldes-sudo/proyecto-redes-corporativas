@@ -22,7 +22,7 @@ capacidad, soporte, seguridad, disponibilidad y crecimiento.
 | Access points | Por definir | WPA2/WPA3, SSID, VLAN, gestión centralizada |
 | Servidores | Por definir | Web, DNS, NTP, correo, Syslog, AAA e IoT |
 | Rack y organización | 2 sedes | Rack, patch panel, bandejas y organizadores |
-| Cableado | Según levantamiento | Cat6, jacks, patch cords, canalización y certificación |
+| Cableado | Metrado preliminar; validar en visita | Cat6/Cat6A, jacks, patch cords, canalización y certificación |
 | Energía | 2 sedes | UPS, PDU y protección eléctrica |
 | Licencias y soporte | Por equipo | Suscripción, garantía y soporte del fabricante |
 | Materiales e instalación física | 2 sedes | Cableado, patch panel, canalización y montaje |
@@ -43,6 +43,38 @@ capacidad, soporte, seguridad, disponibilidad y crecimiento.
 | Categoría | Ítem/modelo | Cant. | Proveedor | URL | Precio neto | IVA | Total | Justificación |
 |---|---|---:|---|---|---:|---:|---:|---|
 | Pendiente | Pendiente | 0 | Pendiente | Pendiente | $0 | $0 | $0 | Pendiente |
+
+## Metrado preliminar de cableado y materiales
+
+Como todavía no existe un plano definitivo con los recorridos de ambas sedes,
+las cantidades de obra se calculan con supuestos explícitos y no como medición
+final. Para los 42 computadores exigidos por la rúbrica se considera una
+distancia promedio de 25 m por punto y una reserva técnica del 15%:
+
+```text
+Cable horizontal = 42 puntos × 25 m × 1,15 = 1.207,5 m
+Compra recomendada = 4 cajas de 305 m = 1.220 m
+```
+
+| Material | Cantidad preliminar | Criterio de cálculo |
+|---|---:|---|
+| Puntos de red para computadores | 42 | 7 equipos por cada uno de los 6 switches de acceso |
+| Cable Cat6/Cat6A, caja de 305 m | 4 cajas | 1.220 m disponibles; cubre 1.207,5 m calculados |
+| Keystone o conector RJ45 hembra | 42 | Un punto por computador |
+| Patch panel | 1 de 48 puertos | 42 puntos más reserva para crecimiento |
+| Patch cords de usuario | 42 | Uno por computador |
+| Patch cords de rack | 42 | Uno entre cada puerto del patch panel y el switch |
+| Faceplates/cajas de superficie | 42 | Uno por punto de red |
+| Canaleta | Por medir en visita técnica | No se debe igualar automáticamente a los metros de cable |
+| Etiquetas, fijaciones y consumibles | 1 lote | Instalación y ordenamiento |
+| Certificación de puntos | 42 puntos | Una medición por enlace horizontal |
+
+La canaleta debe medirse siguiendo los recorridos reales, considerando
+subidas, bajadas, cruces, separación eléctrica y holgura. Los conectores
+modulares RJ45 de campo, si se utilizan, se cotizarán aparte; para una
+instalación estructurada se priorizan keystone, patch panel y patch cords
+terminados. Estas cantidades se reemplazarán después de la visita técnica y
+del plano de recorridos.
 
 ## Presupuesto preliminar de equipamiento y materiales
 
@@ -65,9 +97,11 @@ cotización formal. No incluye mano de obra.
 | **Total equipamiento y materiales** |  |  |  | **$30.878.464** |
 
 El subtotal queda dentro del límite de $35.000.000 CLP con IVA. Existe un
-margen preliminar de **$4.121.536** para completar patch panels, PDU,
-transceptores, canalización, certificación de materiales y ajustes de
-cotizaciones sin superar el límite de equipamiento.
+margen preliminar de **$4.121.536** para incorporar los materiales del metrado
+preliminar que aún no tienen precio confirmado —patch panel, keystones,
+patch cords, faceplates, PDU, transceptores y canalización— sin superar el
+límite de equipamiento. La canaleta y los consumibles no deben considerarse
+definitivos hasta realizar el levantamiento físico.
 
 ## Mano de obra y servicios profesionales
 
@@ -80,7 +114,7 @@ soporte:
 | Ítem | Alcance | Rol/responsable | Precio IVA incluido |
 |---|---|---|---:|
 | Diseño, ingeniería y gestión del proyecto | Levantamiento, diagramas, VLAN/IP, selección y gestión | Ingeniero de redes / jefe de proyecto | Pendiente |
-| Instalación física de cableado | 49 enlaces, canalización, rack y terminaciones | Técnico instalador certificado | Pendiente |
+| Instalación física de cableado | 42 puntos, aproximadamente 1.220 m de cable comprado, canalización, rack y terminaciones | Técnico instalador certificado | Pendiente |
 | Configuración y hardening | Core L3, VLAN, SVI, routing, port-security y hardening | Técnico certificado en redes | Pendiente |
 | Certificación, pruebas y documentación as-built | Certificación de puntos, pruebas y registro | Técnico de redes | Pendiente |
 | Despliegue, imaging y puesta en marcha | Instalación, unión a la red, pruebas y etiquetado de 42 equipos | Técnico de soporte | Pendiente |
@@ -88,8 +122,9 @@ soporte:
 | Garantía, soporte y contingencia postinstalación | 6 meses, visitas presenciales y contingencia | Servicio de soporte técnico | Pendiente |
 | **Total servicios profesionales** |  |  | **Pendiente** |
 
-El número de 49 enlaces y 42 equipos debe validarse contra el levantamiento
-final. No se debe incorporar mano de obra al subtotal de equipamiento.
+Los 42 puntos, los aproximadamente 1.220 m de cable comprado y la
+canalización deben validarse contra el levantamiento final. No se debe
+incorporar mano de obra al subtotal de equipamiento.
 
 ## Subtotales
 

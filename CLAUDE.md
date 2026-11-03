@@ -58,8 +58,12 @@ automáticamente cambios internos de archivos binarios.
 - Revisar VLSM, gateways, enlaces de tránsito y tabla completa de IP.
 - Configurar y probar VLAN, OSPF, DHCP, VPN, NAT/PAT, DMZ, ACL y hardening.
 - Crear el archivo `.pkt`, recopilar evidencias y documentar pruebas.
+- Confirmar mediante visita técnica el metrado de cable, canaleta, conectores,
+  patch panel, patch cords y accesorios; el metrado académico actual usa
+  42 puntos, 25 m promedio y 15% de reserva.
 - Preparar dos cotizaciones por ítem, justificaciones y presupuesto entre
-  **$20.000.000 y $35.000.000 CLP**, con IVA.
+  **$20.000.000 y $35.000.000 CLP**, con IVA, manteniendo separada la mano de
+  obra.
 - Elaborar informe PDF y presentación comercial de 15 minutos.
 
 ## Decisiones importantes
@@ -67,6 +71,8 @@ automáticamente cambios internos de archivos binarios.
 - La infraestructura principal debe conectarse por cobre.
 - Wireless es opcional y se incorporará como mejora de movilidad, segmentada
   mediante VLAN y protegida con WPA2/WPA3 y ACL.
+- Todos los switches `CORE` de la topología deben ser multicapa (Layer 3);
+  deben soportar VLAN/SVI y el enrutamiento requerido por el diseño.
 - La DMZ debe aislar servicios públicos de las VLAN internas.
 - La VPN protege tráfico corporativo entre sedes; NAT/PAT gestiona salida a
   Internet y ACL controla permisos. No son funciones equivalentes.
@@ -105,6 +111,20 @@ La topología incluye `ISP1`, `ISP2` y `R-SUC`. La auditoría encontró polític
 ISAKMP/IPsec en ambos extremos, pero todavía no existe evidencia de negociación
 ni contadores de cifrado. No se debe afirmar que la VPN está operativa sin
 `show crypto isakmp sa` y `show crypto ipsec sa`.
+
+### Presupuesto y metrado preliminar
+
+El presupuesto preliminar de equipamiento y materiales es de **$30.878.464
+IVA incluido**, dentro del límite de $35.000.000. La mano de obra, ingeniería,
+instalación, certificación, capacitación y soporte se mantiene separada.
+
+Mientras no exista plano o visita técnica, el cableado se calcula para los
+42 computadores de la rúbrica con una distancia promedio de 25 m y 15% de
+reserva: 1.207,5 m calculados, redondeados a 4 cajas de 305 m. También se
+consideran preliminarmente 42 puntos, 42 keystones/RJ45 hembra, 1 patch panel
+de 48 puertos, 42 patch cords de usuario y 42 patch cords de rack. La
+canaleta se debe medir por recorrido real y no se puede inferir directamente
+desde los metros de cable.
 
 ### Nombres de la topología actual
 
