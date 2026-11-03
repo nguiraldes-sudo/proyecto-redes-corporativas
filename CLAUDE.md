@@ -86,34 +86,30 @@ automáticamente cambios internos de archivos binarios.
 
 ## Estado actual de Packet Tracer
 
-El archivo `packet-tracer/redes-corporativas-etapa-01-lan.pkt` contiene una
-primera etapa funcional de la casa matriz: un router, un switch 2960 y VLAN
-10, 20, 30, 40, 50, 60, 70, 80, 90, 100 y 110 con enrutamiento inter-VLAN.
-La VLAN 90 fue probada temporalmente con un PC porque la webcam IoT utilizada
-no aprendió una dirección MAC en el switch. Antes de continuar, guardar el
-archivo `.pkt` en Packet Tracer.
+La fuente oficial actual es `packet-tracer/TRABAJO REDES-backup.pkt`, revisada
+el 2026-11-01. La auditoría estática identificó 51 dispositivos y 60 enlaces
+Ethernet, incluyendo dos sedes, dos routers ISP, cuatro switches multicapa,
+seis switches de acceso/DMZ y siete servidores.
 
-También se configuró SSH en el router y el switch, con administración desde la
-VLAN 110. Se creó una ACL para bloquear el acceso de la VLAN 100 a las redes
-internas, manteniendo disponible su gateway y dejando una excepción para DHCP.
-DHCP está configurado y probado en las VLAN 10, 20, 30, 40, 50, 60, 80 y 100.
-El teléfono IP recibió la dirección `10.10.80.11` mediante DHCP. La VLAN 100
-también obtiene dirección después de permitir DHCP en su ACL. La VLAN 70 de
-servidores y la VLAN 110 de gestión conservan direccionamiento manual. La VLAN
-90 todavía usa un PC temporal para la prueba y puede requerir DHCP cuando se
-seleccione un dispositivo IoT compatible.
+El esquema vigente del archivo oficial es VLAN 10 Gerencia, 20 Finanzas,
+30 RRHH, 40 TI, 50 Ventas, 60 Operaciones, 70 Voz, 80 IoT, 90 DMZ en la
+matriz, 99 Gestión y 999 Nativa. No debe mezclarse con el esquema antiguo que
+usaba VLAN 90 IoT, 100 invitados, 110 gestión y 120 DMZ.
 
-La topología también incluye `ISP1`, `ISP2` y `R-SUC`. OSPF formó
-vecindades FULL entre los routers y el ping entre un `PC-PT` de la sucursal y la red
-`10.10.10.0/27` funciona. La VPN IPsec no pudo configurarse en `R-SUC`
-porque su IOS solo ofrece `crypto key` y no soporta `crypto isakmp` ni
-`crypto ipsec`; esta limitación debe explicarse en el informe.
+La configuración guardada incluye SSH, HSRP, EtherChannel, OSPF, DHCP,
+NAT/PAT, ACL, IPsec, port-security, PortFast, BPDU Guard y VTP transparente.
+Esto demuestra presencia de configuración, no funcionamiento comprobado. Falta
+ejecutar las pruebas `show`, validar servicios y corregir la publicación web.
+
+La topología incluye `ISP1`, `ISP2` y `R-SUC`. La auditoría encontró políticas
+ISAKMP/IPsec en ambos extremos, pero todavía no existe evidencia de negociación
+ni contadores de cifrado. No se debe afirmar que la VPN está operativa sin
+`show crypto isakmp sa` y `show crypto ipsec sa`.
 
 ### Nombres de la topología actual
 
-La versión 2 se guardará como
-`packet-tracer/redes-corporativas-topologia-completa.pkt`, conservando la
-versión inicial como respaldo. Los equipos existentes de la matriz se
+La versión oficial ensayada es `packet-tracer/TRABAJO REDES-backup.pkt`. Los
+equipos existentes de la matriz se
 identifican como `R-HQ`, `CORE-HQ1`, `CORE-HQ2`, `SW-HQ-A1`, `SW-HQ-A2`,
 `SW-HQ-A3` y `SW-DMZ`. La sucursal utiliza `R-SUC`, `CORE-S1`, `CORE-S2`,
 `SW-S-A1` y `SW-S-A2`. La red externa utiliza `ISP1` e `ISP2`.
@@ -142,10 +138,12 @@ si ya fueran nombres configurados en el archivo.
 
 ### Próximos pasos para continuar
 
-- Retomar la configuración Packet Tracer en `packet-tracer/redes-corporativas-etapa-01-lan.pkt`.
-- Aplicar hardening en `SW-S-A1` (pendiente: port-security, PortFast, BPDU Guard).
-- Completar la topología con enlaces de cobre faltantes.
-- Configurar OSPF, VPN IPsec (explicar limitación de R-SUC), NAT/PAT, DMZ y ACLs.
+- Abrir una copia de `packet-tracer/TRABAJO REDES-backup.pkt` para no alterar la
+  fuente oficial durante las pruebas.
+- Corregir la publicación web, verificar las IP fijas de Server1–Server6 y
+  activar DNS/AAA.
+- Configurar o documentar la excepción docente para WLAN/SSID.
+- Probar OSPF, VPN IPsec, NAT/PAT, DMZ, ACLs y hardening.
 - Generar cotización y documento final.
 
 ## Punto de pausa: 2026-10-26

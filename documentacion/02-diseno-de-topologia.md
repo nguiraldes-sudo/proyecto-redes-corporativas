@@ -11,10 +11,10 @@ mezclar redes que deberían estar separadas.
 
 ## 2. Arquitectura general
 
-La solución tendrá dos sedes conectadas a través de una red ISP simulada. La
-captura actual representa una versión de trabajo de la topología física; aún
-faltan algunos enlaces de cobre, por lo que no debe considerarse la versión
-final del archivo `.pkt`.
+La fuente oficial actual es `packet-tracer/TRABAJO REDES-backup.pkt`, auditada
+el 2026-11-01. La solución tiene dos sedes conectadas a través de una red ISP
+simulada. La captura histórica fue provisional; el archivo oficial ya contiene
+la estructura principal, aunque su funcionamiento todavía debe probarse.
 
 ```text
 Casa matriz ── Router ISP 1 ── Router ISP 2 ── Sucursal
@@ -69,9 +69,10 @@ completa depende de las funciones soportadas por los equipos simulados.
 
 ### Access points y Wireless
 
-La conectividad Wireless es opcional, por lo que se incorporará como una capa
-adicional de movilidad. La infraestructura principal seguirá conectada por
-cobre y no dependerá de los access points para operar.
+El archivo oficial no contiene Access Point ni Wireless Router. Si la rúbrica
+exige SSID por departamento, esta capa debe agregarse en una copia de trabajo
+o respaldarse una autorización docente para omitirla. La infraestructura
+principal seguirá conectada por cobre y no dependerá de la WLAN para operar.
 
 Los access points se conectarán por Ethernet a los switches y podrán ofrecer:
 
@@ -93,19 +94,18 @@ infraestructura interna pueden ubicarse en una VLAN de servidores protegida.
 
 ### Casa matriz
 
-En la parte izquierda de la captura se observan:
+La auditoría del archivo oficial identifica:
 
 - `R-HQ`: router perimetral de la casa matriz.
 - `CORE-HQ1` y `CORE-HQ2`: dos switches multicapa Catalyst 3650-24PS.
-- `SW-DMZ`: switch de la DMZ, conectado a seis servidores.
+- `SW-DMZ`: switch de la DMZ, conectado a siete servidores.
 - Tres switches de acceso para usuarios y dispositivos finales.
 - Computadores, impresoras, teléfonos IP, cámaras/webcam y termostatos IoT.
-- Un access point conectado a uno de los switches de acceso.
+- No hay Access Point en el inventario oficial.
 
-Los dos switches core aparecen interconectados y enlazados con los switches
-de acceso. `R-HQ` tiene conexiones visibles hacia el bloque core y hacia
-`SW-DMZ`. La captura todavía requiere completar y revisar algunos enlaces de
-cobre antes de validar la redundancia y la conectividad total.
+Los dos switches core aparecen interconectados y enlazados con los switches de
+acceso. `R-HQ` tiene un enlace enrutado hacia cada core. `SW-DMZ` conserva un
+único uplink hacia `CORE-HQ1`, por lo que la redundancia de la DMZ es parcial.
 
 ### Red ISP simulada
 
@@ -126,12 +126,10 @@ En la parte derecha se observan:
 - `SW-S-A1` y `SW-S-A2`: dos switches de acceso.
 - Computadores, impresoras, teléfonos IP, webcam y termostato IoT.
 
-En esta versión del screenshot, `CORE-S1` y `CORE-S2` aparecen sin enlaces de
-cobre visibles hacia `R-SUC` ni hacia los switches de acceso. Los dispositivos
-finales están conectados a `SW-S-A1` y `SW-S-A2`, pero esos switches todavía no
-se observan conectados al bloque core. Por lo tanto, deben agregarse y
-verificarse los enlaces `R-SUC`–core, core–core y core–acceso antes de iniciar
-las pruebas de redundancia, OSPF y segmentación.
+La auditoría confirma enlaces desde `R-SUC` a ambos cores, un EtherChannel
+entre `CORE-S1` y `CORE-S2`, y uplinks desde ambos cores a `SW-S-A1` y
+`SW-S-A2`. Deben probarse HSRP, STP, EtherChannel, OSPF y la caída de enlaces
+antes de declarar la redundancia operativa.
 
 ### Estado visual provisional
 

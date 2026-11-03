@@ -91,9 +91,12 @@ La solución se considerará aceptada cuando:
 
 ## 8. Decisión sobre Wireless
 
-El profesor confirmó que la conectividad Wireless es opcional. Se incorporará
-como una mejora de movilidad y flexibilidad, pero la red principal debe poder
-funcionar mediante cobre sin depender de la WLAN.
+La documentación histórica indica que la conectividad Wireless es opcional.
+Sin embargo, la auditoría de la pauta señala que podrían exigirse SSID por
+departamento. El archivo oficial no contiene Access Point, por lo que se debe
+obtener confirmación explícita del profesor o implementar la WLAN en una copia
+de trabajo. En cualquier caso, la red principal debe poder funcionar mediante
+cobre sin depender de la WLAN.
 
 La WLAN propuesta tendrá:
 

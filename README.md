@@ -72,6 +72,9 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 
 ## Estado del proyecto
 
+- **Fuente oficial actual:** `packet-tracer/TRABAJO REDES-backup.pkt`, revisado
+  el 2026-11-01. Las configuraciones auxiliares solo respaldan los datos que
+  coinciden con este archivo.
 - [x] Seleccionar el Proyecto 2.
 - [x] Definir el enfoque comercial.
 - [x] Confirmar el rango presupuestario.
@@ -83,8 +86,17 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [x] Definir la matriz inicial de tráfico y políticas de acceso.
 - [x] Implementar la primera etapa de VLAN y enrutamiento inter-VLAN.
 - [x] **Actualizar configuraciones con archivo Proyecto2_PT (nueva versión con VPN, port-security, VLAN 99 gestión, HSRP v2).**
-- [ ] Completar la topología física en Packet Tracer, incluyendo los enlaces de
-  cobre pendientes entre routers, cores y switches de acceso.
+- [x] Completar la estructura física principal en Packet Tracer, incluyendo
+  routers, cores, switches de acceso, DMZ y enlaces redundantes de acceso.
+- [ ] Verificar en ejecución HSRP, STP, EtherChannel, OSPF y las pruebas de
+  caída de enlaces.
+- [ ] Resolver la discrepancia de publicación web (`10.10.1.146` frente a
+  `10.10.1.147/24`) y documentar las IP fijas de los servidores DMZ.
+- [ ] Activar y probar DNS, AAA/ACS y los demás servicios corporativos.
+- [ ] Implementar WLAN/SSID o dejar registrada una autorización docente para
+  omitirla; el `.pkt` oficial no contiene Access Point.
+- [ ] Verificar la negociación real de IPsec con `show crypto isakmp sa` y
+  `show crypto ipsec sa`.
 - [ ] Ejecutar pruebas y recopilar evidencias.
 - [ ] Preparar presupuesto y cotizaciones.
 - [ ] Redactar informe técnico.
@@ -141,6 +153,20 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - La captura aún no es final: faltan algunos cables de cobre y deben
   verificarse los enlaces antes de validar la redundancia y comenzar las
   pruebas definitivas.
+
+### 2026-11-01
+
+- Se tomó `packet-tracer/TRABAJO REDES-backup.pkt` como fuente oficial de la
+  topología actual.
+- La auditoría confirmó 51 dispositivos y 60 conexiones Ethernet, con dos
+  cores por sede, uplinks redundantes de acceso y una DMZ centralizada en la
+  matriz.
+- Se detectaron contradicciones entre la documentación antigua y el `.pkt`:
+  el esquema vigente usa VLAN 10–80, 90 DMZ, 99 gestión y 999 nativa.
+- La configuración de IPsec, NAT/PAT, OSPF, DHCP, HSRP y hardening está
+  almacenada, pero debe probarse en ejecución antes de declararla operativa.
+- Quedaron pendientes la corrección de IPs de la DMZ, la activación de
+  servicios, la WLAN y la recopilación de evidencias.
 
 ### Convención de nombres
 

@@ -1,5 +1,9 @@
 # VLAN y direccionamiento IP
 
+> **Nota de versión:** Los ejemplos didácticos de este documento usan
+> `10.10.10.0/27`, pero la topología oficial utiliza la tabla de VLAN y
+> subredes de la sección 4. No mezclar ambos esquemas en el informe final.
+
 ## 1. ¿Qué es una VLAN?
 
 Una **VLAN** (*Virtual Local Area Network*) es una red lógica creada dentro de
@@ -36,10 +40,11 @@ crecimiento.
 
 ## 3. Criterio de direccionamiento
 
-Se utilizarán bloques privados separados por sede:
+La fuente oficial actual (`TRABAJO REDES-backup.pkt`) utiliza bloques privados
+separados por sede:
 
-- **Casa matriz:** `10.10.0.0/16`.
-- **Sucursal:** `10.20.0.0/16`.
+- **Casa matriz:** `10.10.0.0` a `10.10.15.255`.
+- **Sucursal:** `10.20.0.0` a `10.20.7.255`.
 - **Enlaces de tránsito y VPN:** bloques reservados independientes.
 
 La diferencia entre el segundo octeto facilita identificar rápidamente el
@@ -60,22 +65,21 @@ subred cambia según la sede.
 
 | VLAN | Nombre | Uso | Matriz | Sucursal |
 |---:|---|---|---|---|
-| 10 | ADMIN | Administración y Finanzas | `10.10.10.0/27` | `10.20.10.0/28` |
-| 20 | RRHH | Recursos Humanos | `10.10.20.0/28` | `10.20.20.0/29` |
-| 30 | INGENIERIA | Ingeniería y Proyectos | `10.10.30.0/26` | `10.20.30.0/27` |
-| 40 | OPERACIONES | Operaciones | `10.10.40.0/27` | `10.20.40.0/28` |
-| 50 | VENTAS | Ventas y Comercial | `10.10.50.0/27` | `10.20.50.0/28` |
-| 60 | GERENCIA | Gerencia | `10.10.60.0/28` | `10.20.60.0/29` |
-| 70 | SERVIDORES | Servicios internos | `10.10.70.0/27` | `10.20.70.0/28` |
-| 80 | VOZ | Telefonía IP | `10.10.80.0/27` | `10.20.80.0/28` |
-| 90 | IOT | Cámaras y termostatos | `10.10.90.0/27` | `10.20.90.0/28` |
-| 99 | GESTION | Administración de red y switches | `10.10.99.0/28` | `10.20.99.0/28` |
-| 100 | GUEST | Invitados, si se autoriza | `10.10.100.0/27` | `10.20.100.0/28` |
-| 120 | DMZ | Servicios publicados | `10.10.120.0/28` | `10.20.120.0/28` |
+| 10 | Gerencia | Gerencia | `10.10.1.128/28` | `10.20.1.16/28` |
+| 20 | Finanzas | Administración y Finanzas | `10.10.1.0/27` | `10.20.0.160/27` |
+| 30 | RRHH | Recursos Humanos | `10.10.1.32/27` | `10.20.0.192/27` |
+| 40 | TI | Administración técnica | `10.10.1.64/27` | `10.20.0.224/27` |
+| 50 | Ventas | Ventas y Comercial | `10.10.0.0/25` | `10.20.0.0/26` |
+| 60 | Operaciones | Operaciones | `10.10.0.128/26` | `10.20.0.64/26` |
+| 70 | Voz | Telefonía IP | `10.10.0.192/26` | `10.20.0.128/27` |
+| 80 | IoT | Cámaras, MCU y termostatos | `10.10.1.96/27` | `10.20.1.0/28` |
+| 90 | DMZ | Servicios publicados, solo matriz | `10.10.1.144/28` | No implementada |
+| 99 | Gestión | Administración de red | `10.10.1.160/28` | `10.20.1.32/28` |
+| 999 | Nativa | VLAN nativa no utilizada por usuarios | Troncales | Troncales |
 
-Las VLAN 100 y la conectividad asociada a dispositivos inalámbricos quedan
-condicionadas a la confirmación del profesor. La VLAN 90 puede implementarse
-con dispositivos IoT conectados por cobre si esa es la exigencia final.
+La WLAN y una VLAN de invitados no aparecen en el archivo oficial. Si la
+rúbrica exige SSID por departamento, deben implementarse en una copia de
+trabajo o respaldarse una autorización docente para omitirlas.
 
 ## 5. ¿Por qué las subredes tienen tamaños distintos?
 
@@ -137,38 +141,29 @@ entre dos dispositivos.
 
 ## 8. Estado de implementación en Packet Tracer
 
-En la primera etapa se implementó en la casa matriz una topología de práctica
-con un router, un switch 2960 y equipos finales. El router utiliza
-**router-on-a-stick**: una interfaz física en trunk y una subinterfaz por VLAN.
+La fuente oficial utiliza switches multicapa con SVIs y HSRP v2. Los gateways
+virtuales son:
 
-Se configuraron y probaron los siguientes gateways:
+| Sede | VLAN de ejemplo | Gateway HSRP | Estado |
+|---|---:|---|---|
+| Matriz | 10 | `10.10.1.129/28` | Configurado, por probar |
+| Matriz | 90 | `10.10.1.145/28` | Configurado, publicación por corregir |
+| Matriz | 99 | `10.10.1.161/28` | Configurado, por probar |
+| Sucursal | 10 | `10.20.1.17/28` | Configurado, por probar |
+| Sucursal | 80 | `10.20.1.1/28` | Configurado, por probar |
+| Sucursal | 99 | `10.20.1.33/28` | Configurado, por probar |
 
-| VLAN | Nombre | Gateway | Resultado |
-|---:|---|---|---|
-| 10 | ADMIN | `10.10.10.1/27` | Operativa |
-| 20 | RRHH | `10.10.20.1/28` | Operativa |
-| 30 | INGENIERIA | `10.10.30.1/26` | Operativa |
-| 40 | OPERACIONES | `10.10.40.1/27` | Operativa |
-| 50 | VENTAS | `10.10.50.1/27` | Operativa |
-| 60 | GERENCIA | `10.10.60.1/28` | Operativa |
-| 70 | SERVIDORES | `10.10.70.1/27` | Operativa |
-| 80 | VOZ | `10.10.80.1/27` | Gateway configurado |
-| 90 | IOT | `10.10.90.1/27` | Probada con PC temporal |
-| 100 | GUEST | `10.10.100.1/27` | Operativa |
-| 110 | GESTION | `10.10.110.1/28` | Operativa |
-
-Las pruebas realizadas incluyeron ping desde cada equipo de prueba hacia su
-gateway y pings entre VLAN. El dispositivo IoT definitivo queda pendiente:
-la webcam probada no generó una dirección MAC en el puerto del switch, por lo
-que la VLAN 90 se validó temporalmente con un PC.
+La auditoría confirma que las configuraciones están guardadas, pero no
+equivale a pruebas de conectividad, convergencia HSRP ni DHCP exitoso.
 
 ## 9. Decisiones aún pendientes
 
-- Confirmar si se implementarán VLAN de invitados y WLAN.
+- Confirmar si se implementarán WLAN/SSID y VLAN de invitados.
 - Confirmar si los dispositivos IoT serán cableados o inalámbricos.
 - Revisar que los modelos de Packet Tracer soporten las funciones necesarias.
-- Definir la segunda dirección de gateway si se implementa redundancia real.
-- Completar la tabla de asignación de IP para servidores, routers y switches.
+- Ejecutar pruebas de HSRP, STP, EtherChannel y DHCP.
+- Completar la tabla de asignación de IP para servidores, routers y switches,
+  verificando físicamente cada equipo en Packet Tracer.
 
 ## Resumen para la defensa oral
 
@@ -176,8 +171,10 @@ que la VLAN 90 se validó temporalmente con un PC.
 > independiente a cada una. La casa matriz y la sucursal utilizan bloques
 > privados distintos, lo que evita solapamientos y facilita el enrutamiento por
 > la VPN. El tamaño de cada subred se definió según la cantidad de usuarios y
-> el crecimiento esperado. **Versión actualizada: VLAN 99 para gestión de red,
-> VLAN 120 para DMZ. Switches con port-security activado y VTP en modo transparent.**
+> el crecimiento esperado. **Versión oficial actualizada:** VLAN 99 para
+> gestión, VLAN 90 para DMZ y VLAN 999 como nativa. Los switches tienen
+> port-security, PortFast, BPDU Guard y VTP en modo transparent configurados;
+> falta validar su efecto con pruebas.
 
 ## Bitácora
 

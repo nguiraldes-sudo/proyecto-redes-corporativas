@@ -15,24 +15,31 @@ La solución separa estas funciones:
 
 ## 2. DMZ
 
-La DMZ será una red separada de las VLAN de usuarios. En la casa matriz se
-reservará inicialmente:
+La DMZ oficial es la VLAN 90, separada de las VLAN de usuarios. Solo existe en
+la casa matriz:
 
 ```text
-Red DMZ:     10.10.120.0/28
-Gateway DMZ: 10.10.120.1
+Red DMZ:     10.10.1.144/28
+Gateway DMZ: 10.10.1.145
 ```
 
-Los servidores públicos podrán utilizar, por ejemplo:
+La guía auxiliar propone las siguientes direcciones:
 
 ```text
-Servidor web:    10.10.120.10
-Servidor correo: 10.10.120.11
-Servidor DNS:    10.10.120.12
+Servidor web:    10.10.1.146
+Servidor DNS:    10.10.1.147
+Servidor NTP:    10.10.1.148
+Servidor correo: 10.10.1.149
+Servidor Syslog:  10.10.1.150
+Servidor AAA:    10.10.1.151
+Servidor IoT:    10.10.1.152
 ```
 
-El gateway no significa que todos los servicios estén abiertos. Las ACL o las
-reglas del firewall deberán permitir solo los puertos necesarios:
+Estas IP deben verificarse en cada servidor antes de declararlas operativas.
+La auditoría detectó seis servidores sin IPv4 fija guardada y una discrepancia:
+R-HQ publica `10.10.1.146`, mientras el objeto `Server HTTP` guardaba
+`10.10.1.147/24`. El gateway no significa que todos los servicios estén
+abiertos; las ACL deben permitir solo los puertos necesarios:
 
 | Servicio | Puerto habitual | Motivo |
 |---|---:|---|
@@ -46,9 +53,9 @@ Tracer y del alcance que confirme el profesor.
 
 ## 3. VPN IPsec site-to-site
 
-Una VPN site-to-site conecta redes completas, no solo un computador. En nuestro
-caso, el router de la matriz y el router de la sucursal negociarán un túnel
-IPsec a través de los routers ISP.
+Una VPN site-to-site conecta redes completas, no solo un computador. En el
+archivo oficial hay configuración ISAKMP, transform-set y crypto map en R-HQ y
+R-SUC, pero la negociación todavía no está demostrada.
 
 ```text
 Red matriz ─ Router matriz ═══ túnel IPsec ═══ Router sucursal ─ Red sucursal
@@ -158,31 +165,23 @@ Internet → router/firewall → bloqueo por política
 No son funciones intercambiables. NAT no reemplaza una ACL, una ACL no cifra
 el tráfico y una DMZ no protege por sí sola los servidores.
 
-## 8. Decisiones pendientes
+## 8. Estado y decisiones pendientes
 
-- **VPN IPsec:** Ya configurada en R-HQ y R-SUC con IKE/AES-256/SHA/DH2/PSK. 
-  El router IOS simulado en Packet Tracer 9.0 soporta ahora `crypto isakmp`
-  y `crypto ipsec` (a diferencia de la versión previa). Ver documento 04 para
-  detalles de configuración.
+- **VPN IPsec:** configuración guardada en R-HQ y R-SUC con
+  AES-256/SHA/DH2/PSK. Falta ejecutar `show crypto isakmp sa` y
+  `show crypto ipsec sa`.
 - Definir si la DMZ será solo en la casa matriz o en ambas sedes.
 - Confirmar los servicios que realmente se simularán.
 - Definir las IP públicas simuladas de los routers perimetrales.
 - Especificar la matriz final de ACL.
-- Validar cómo se implementará la excepción de NAT para la VPN (NAT exemptión
-  para tráfico entre sedes).
+- Validar la excepción de NAT para el tráfico entre sedes.
+- Resolver la publicación web y verificar DNS, AAA, NTP, correo, Syslog e IoT.
 
-## 9. Resultado de la implementación en Packet Tracer
+## 9. Resultado actual en Packet Tracer
 
-Se comprobó conectividad entre la matriz y la sucursal mediante rutas
-aprendidas por OSPF. Sin embargo, el router de sucursal utilizado en Packet
-Tracer no reconoce `crypto isakmp` ni `crypto ipsec`; al ejecutar `crypto ?`
-solo ofrece operaciones de claves (`crypto key`).
-
-Por esta limitación del IOS simulado, IPsec queda como parte del diseño
-requerido y documentado, pero no como una función demostrada en el archivo
-`.pkt`. La conectividad entre sedes se mantiene mediante OSPF para validar el
-enrutamiento. En una implementación real se debe seleccionar un equipo con
-soporte explícito para IKE/ISAKMP e IPsec.
+La auditoría estática confirma que OSPF, NAT/PAT, ACL e IPsec están guardados
+en la topología oficial. No se deben presentar como operativos hasta recopilar
+salidas de comandos y pruebas positivas/negativas dentro de Packet Tracer.
 
 ## Resumen para la defensa oral
 

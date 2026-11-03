@@ -10,22 +10,21 @@ corresponda, controles de la WLAN.
 La política general es **mínimo privilegio**: todo tráfico no descrito como
 permitido debe considerarse bloqueado.
 
-**Estado actual:** Las configuraciones de R-HQ y R-SUC (archivo Proyecto2_PT)
-ya incluyen políticas NAT/PAT con excepción de VPN, ACLs perimetrales y
-enrutamiento OSPF activo. Ver documentos de configuración de routers y switches.
+**Estado actual:** El `.pkt` oficial guarda políticas NAT/PAT con excepción de
+VPN, ACLs perimetrales, OSPF, HSRP y hardening. La auditoría de configuración
+no sustituye pruebas de ejecución.
 
 ## 2. Zonas y redes involucradas
 
 | Zona | Redes principales | Función |
 |---|---|---|
 | Usuarios | VLAN 10, 20, 30, 40, 50 y 60 | Equipos de los departamentos |
-| Servidores | VLAN 70 | Servicios internos corporativos |
-| Voz | VLAN 80 | Telefonía IP |
-| IoT | VLAN 90 | Cámaras y termostatos |
-| Invitados | VLAN 100, opcional | Acceso inalámbrico solo a Internet |
-| Gestión | VLAN 110 | Administración de switches, routers y AP |
-| DMZ | VLAN 120, inicialmente en matriz | Servicios publicados |
-| Sedes | Redes `10.10.0.0/16` y `10.20.0.0/16` | Tráfico corporativo por VPN |
+| Voz | VLAN 70 | Telefonía IP |
+| IoT | VLAN 80 | Cámaras, MCU y termostatos |
+| Gestión | VLAN 99 | Administración de switches y routers |
+| DMZ | VLAN 90, solo matriz | Servicios publicados |
+| Nativa | VLAN 999 | VLAN nativa de troncales |
+| Sedes | Rangos `10.10.0.0–10.10.15.255` y `10.20.0.0–10.20.7.255` | Tráfico corporativo por VPN |
 | Internet | Red externa | Servicios fuera de la empresa |
 
 ## 3. Reglas entre redes internas
@@ -33,17 +32,17 @@ enrutamiento OSPF activo. Ver documentos de configuración de routers y switches
 | Origen | Destino | Servicio | Acción | Justificación |
 |---|---|---|---|---|
 | VLAN de usuarios | DNS/DHCP autorizado | DNS, DHCP | Permitir | Obtener configuración y resolver nombres |
-| VLAN de usuarios | VLAN 70 SERVIDORES | HTTPS, SMB/servicios requeridos | Permitir según necesidad | Usar aplicaciones corporativas |
+| VLAN de usuarios | Servicios corporativos autorizados | HTTPS, SMB/servicios requeridos | Permitir según necesidad | Usar aplicaciones corporativas |
 | VLAN de usuarios | Otras VLAN de usuarios | Cualquier otro | Bloquear | Evitar movimiento lateral |
-| VLAN 30 INGENIERIA | Servidores de proyectos | HTTPS/servicio del proyecto | Permitir | Trabajo técnico |
-| VLAN 20 RRHH | Servidores autorizados | HTTPS | Permitir | Acceso a sistemas de personal |
-| VLAN 10 ADMIN | Servidores financieros | HTTPS/servicio autorizado | Permitir | Gestión administrativa |
-| VLAN 60 GERENCIA | Servicios corporativos | HTTPS, correo y servicios autorizados | Permitir | Movilidad y gestión |
-| VLAN 80 VOZ | Servidor de telefonía | SIP/RTP | Permitir | Funcionamiento de telefonía IP |
-| VLAN 90 IOT | Servidor de gestión | DNS, NTP, HTTPS | Permitir | Operación y administración de IoT |
-| VLAN 90 IOT | VLAN de usuarios | Cualquier otro | Bloquear | Aislar cámaras y termostatos |
-| VLAN 110 GESTION | Equipos de red | SSH, HTTPS, SNMP autorizado | Permitir | Administración controlada |
-| Cualquier VLAN | VLAN 110 GESTION | Cualquier otro | Bloquear | Proteger la administración |
+| VLAN 40 TI | Servidores de proyectos | HTTPS/servicio del proyecto | Permitir | Administración técnica |
+| VLAN 30 RRHH | Servidores autorizados | HTTPS | Permitir | Acceso a sistemas de personal |
+| VLAN 20 FINANZAS | Servidores financieros | HTTPS/servicio autorizado | Permitir | Gestión financiera |
+| VLAN 10 GERENCIA | Servicios corporativos | HTTPS, correo y servicios autorizados | Permitir | Movilidad y gestión |
+| VLAN 70 VOZ | Servidor de telefonía | SIP/RTP | Permitir | Funcionamiento de telefonía IP |
+| VLAN 80 IOT | Servidor de gestión | DNS, NTP, HTTPS | Permitir | Operación y administración de IoT |
+| VLAN 80 IOT | VLAN de usuarios | Cualquier otro | Bloquear | Aislar cámaras y termostatos |
+| VLAN 99 GESTION | Equipos de red | SSH, HTTPS, SNMP autorizado | Permitir | Administración controlada |
+| Cualquier VLAN | VLAN 99 GESTION | Cualquier otro | Bloquear | Proteger la administración |
 
 Las reglas exactas de puertos se ajustarán a los servicios que finalmente se
 implementen en Packet Tracer. No se debe permitir una red completa cuando solo
@@ -56,10 +55,11 @@ se necesita un servicio específico.
 | VLAN autorizadas de sucursal | Servidores autorizados de matriz | Servicios corporativos | Permitir por IPsec | Operación entre sedes |
 | VLAN autorizadas de matriz | Servidores autorizados de sucursal | Servicios corporativos | Permitir por IPsec | Operación entre sedes |
 | VLAN de usuarios | VLAN de gestión de la otra sede | Cualquier otro | Bloquear | La VPN no elimina las ACL |
-| VLAN 90 IOT | Redes de usuarios de la otra sede | Cualquier otro | Bloquear | Reducir impacto de un dispositivo comprometido |
+| VLAN 80 IOT | Redes de usuarios de la otra sede | Cualquier otro | Bloquear | Reducir impacto de un dispositivo comprometido |
 | Redes corporativas | Internet | HTTP/HTTPS, DNS y servicios permitidos | Salir por NAT/PAT local | Navegación sin enviar todo por la VPN |
 
-El tráfico entre `10.10.0.0/16` y `10.20.0.0/16` debe quedar excluido de NAT
+El tráfico entre los rangos `10.10.0.0–10.10.15.255` y
+`10.20.0.0–10.20.7.255` debe quedar excluido de NAT
 antes de aplicar IPsec. La VPN cifra el flujo, pero las ACL siguen definiendo
 qué redes y servicios pueden atravesar el túnel.
 
@@ -72,25 +72,25 @@ qué redes y servicios pueden atravesar el túnel.
 | Internet | DNS/correo de DMZ | Solo puertos definidos | Permitir si el servicio se implementa | Publicar servicios necesarios |
 | Internet | VLAN internas | Cualquier otro | Bloquear | Las redes privadas no se exponen |
 | Internet | VLAN de gestión | Cualquier otro | Bloquear | Impedir administración externa |
-| VLAN GUEST | Redes internas, DMZ y VPN | Cualquier otro | Bloquear | Invitados solo necesitan Internet |
-| VLAN GUEST | Internet | HTTP/HTTPS y DNS | Permitir con NAT/PAT | Acceso aislado para visitantes |
+| WLAN de invitados pendiente | Redes internas, DMZ y VPN | Cualquier otro | Bloquear | Invitados solo necesitan Internet |
+| WLAN de invitados pendiente | Internet | HTTP/HTTPS y DNS | Permitir con NAT/PAT | Acceso aislado para visitantes |
 
-## 6. SSID y WLAN opcional
+## 6. SSID y WLAN pendiente de implementación
 
-Wireless será una capa adicional conectada por cobre a los switches. Los SSID
-no reemplazan las VLAN cableadas ni hacen depender de ellos los servicios
-principales.
+Wireless no está implementado en el `.pkt` oficial. Si se agrega, será una
+capa adicional conectada por cobre a los switches; los SSID no reemplazarán las
+VLAN cableadas ni harán depender de ellos los servicios principales.
 
 | SSID | VLAN | Usuarios | Política |
 |---|---:|---|---|
 | `ANDES-CORP` | VLAN departamental correspondiente | Usuarios autorizados | Acceso según su departamento |
-| `ANDES-GERENCIA` | VLAN 60 | Gerencia | Acceso a servicios autorizados |
-| `ANDES-GUEST` | VLAN 100 | Invitados | Solo Internet |
+| `ANDES-GERENCIA` | VLAN 10 | Gerencia | Acceso a servicios autorizados |
+| `ANDES-GUEST` | VLAN de invitados por definir | Invitados | Solo Internet |
 
-La demostración puede comenzar con `ANDES-GUEST` y `ANDES-GERENCIA`, si los
-modelos disponibles en Packet Tracer permiten validar la seguridad inalámbrica.
-Cada SSID debe usar WPA2/WPA3 y una clave propia. Las claves utilizadas en la
-demostración serán académicas y no deben reutilizar credenciales reales.
+La demostración debe comenzar con SSID que la rúbrica exija, si el profesor no
+autoriza omitir WLAN. Cada SSID debe usar WPA2/WPA3 y una clave propia. Las
+claves de demostración serán académicas y no deben reutilizar credenciales
+reales.
 
 ## 7. Orden recomendado de implementación
 
@@ -101,7 +101,7 @@ demostración serán académicas y no deben reutilizar credenciales reales.
 5. Configurar NAT/PAT y probar salida a Internet.
 6. Configurar ACL internas y perimetrales.
 7. Configurar VPN y excepción de NAT.
-8. Agregar WLAN opcional y comprobar aislamiento de invitados.
+8. Implementar WLAN/SSID si corresponde y comprobar aislamiento de invitados.
 9. Aplicar hardening y documentar evidencias.
 
 ## 8. Criterios de prueba
@@ -112,7 +112,7 @@ demostración serán académicas y no deben reutilizar credenciales reales.
 - IoT llega a su servidor de gestión, pero no inicia conexiones hacia usuarios.
 - Las sedes intercambian solo tráfico corporativo autorizado por la VPN.
 - Internet llega únicamente a los servicios publicados en la DMZ.
-- La gestión de equipos funciona por SSH desde VLAN 110 y falla desde otras VLAN.
+- La gestión de equipos funciona por SSH desde VLAN 99 y falla desde otras VLAN.
 
 ## Resumen para la defensa oral
 
