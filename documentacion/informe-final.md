@@ -9,7 +9,7 @@
 **Archivo de referencia:** `packet-tracer/TRABAJO REDES-backup.pkt`  
 **Fecha de versión:** 2 de noviembre de 2026
 
-> **Estado del documento:** borrador maestro. Las afirmaciones técnicas deben
+> **Estado del documento:** versión estructurada para entrega. Las afirmaciones técnicas deben
 > actualizarse con capturas y salidas de comandos obtenidas durante las
 > pruebas finales. La existencia de una configuración guardada en el `.pkt` no
 > equivale por sí sola a una función verificada.
@@ -64,6 +64,21 @@ o se documentará la autorización docente para omitirla.
 Los routers `ISP1` e `ISP2` representan al proveedor. Las claves del entorno
 son académicas y no deben reutilizarse en sistemas reales.
 
+### 4.1 Alineación con la rúbrica
+
+La pauta de evaluación solicita demostrar una red de referencia con 1 servidor,
+1 switch central, 6 switches de acceso y 42 computadores, distribuidos en 7
+equipos por switch. El archivo oficial del Proyecto 2 contiene una solución
+ampliada de dos sedes: 51 dispositivos, cuatro switches multicapa, seis
+switches de acceso/DMZ, siete servidores lógicos y equipos finales
+heterogéneos.
+
+Esta diferencia se declara explícitamente para mantener coherencia entre el
+informe y el `.pkt`. La propuesta conserva los requisitos evaluables de
+topología, cantidades, direccionamiento, conectividad, presupuesto y
+dimensionamiento de Internet, pero presenta la arquitectura de dos sedes como
+una ampliación del caso base.
+
 ## 5. Diseño de la solución
 
 ### 5.1 Topología física y lógica
@@ -108,6 +123,20 @@ multicapa. HSRP entrega gateways virtuales compartidos y EtherChannel agrupa
 enlaces entre los cores. La disponibilidad real debe comprobarse mediante
 vecindades, tablas de rutas, estados HSRP, estado del EtherChannel y pruebas de
 caída controlada.
+
+### 5.4 Cantidades verificadas y comparación con la pauta
+
+| Elemento | Caso base de la pauta | Topología oficial del proyecto | Observación |
+|---|---:|---:|---|
+| Servidores | 1 | 7 objetos de servidor en DMZ | Se virtualizarán o consolidarán comercialmente |
+| Switch central/multicapa | 1 | 4 | Dos por sede para redundancia |
+| Switches de acceso/DMZ | 6 | 6 | Tres de acceso HQ, dos de acceso sucursal y uno DMZ |
+| Computadores | 42 | 15 PCs, 1 laptop y otros dispositivos | El `.pkt` no representa 42 PCs físicos |
+| Sedes | 1 | 2 | Ampliación propia del Proyecto 2 |
+
+Para la propuesta comercial se cotizan los equipos de infraestructura y no se
+consideran 42 computadores nuevos, porque el requisito del cliente es diseñar
+la red corporativa y no adquirir estaciones de trabajo.
 
 ## 6. Servicios de red
 
@@ -185,7 +214,68 @@ El procedimiento completo y el registro de resultados se encuentran en
 Cada evidencia debe registrar fecha, archivo `.pkt`, equipo, comando o acción,
 resultado esperado, resultado real, captura y responsable.
 
-## 9. Riesgos y limitaciones
+## 9. Checklist técnico de entrega
+
+| Área | Elemento | Estado |
+|---|---|---|
+| Archivo | `.pkt` de Cisco Packet Tracer 9.0 | Disponible |
+| Topología | Captura de topología completa | Pendiente |
+| Cantidades | Tabla comparativa con la pauta | Incluida en este informe |
+| Cableado | Cat6/Cat6A, racks, patch panels, PDU y UPS | Parcial; cotización pendiente |
+| VLAN/IP | Tabla de VLAN, máscaras y gateways | Incluida |
+| Conectividad | Pings entre gateways, sedes y servicios | Pendiente |
+| Internet | Consumo estimado y enlace recomendado | Incluido en sección 10 |
+| Seguridad | ACL, NAT/PAT, SSH, hardening e IPsec | Configurado; pruebas pendientes |
+| Servicios | DHCP, DNS, NTP, correo, Syslog, AAA, web, VoIP e IoT | Parcial; activación/pruebas pendientes |
+| Presupuesto | Cantidad, precio unitario, subtotal y fuente | Parcial; cotización formal pendiente |
+| Evidencias | Capturas fechadas y resultados positivos/negativos | Pendiente |
+
+## 10. Consumo de Internet y dimensionamiento
+
+Para el caso base de 42 computadores se utiliza un escenario simultáneo
+conservador:
+
+| Uso simultáneo | Cantidad | Consumo estimado por equipo | Total descarga |
+|---|---:|---:|---:|
+| Video de capacitación HD 1080p | 6 | 5 Mbps | 30 Mbps |
+| Navegación, correo y documentos en la nube | 36 | 1 Mbps | 36 Mbps |
+| **Subtotal descarga** | 42 |  | **66 Mbps** |
+
+YouTube recomienda aproximadamente 5 Mbps sostenidos para video HD 1080p
+([fuente oficial](https://support.google.com/youtube/answer/78358?hl=en-NP)).
+Para navegación, correo y documentos se adopta una estimación de diseño de
+1 Mbps por equipo; no se presenta como un valor universal del proveedor.
+
+Se agregan 20 Mbps de reserva operacional y luego un 30% de crecimiento:
+
+```text
+Descarga base: 66 Mbps
+Reserva operacional: 66 + 20 = 86 Mbps
+Crecimiento: 86 × 1,30 = 111,80 Mbps
+```
+
+Para subida se considera 0,5 Mbps por cada equipo de oficina:
+
+```text
+Subida base: 36 × 0,5 = 18 Mbps
+Reserva operacional: 18 + 20 = 38 Mbps
+Crecimiento: 38 × 1,30 = 49,40 Mbps
+```
+
+### Recomendación de enlace
+
+Se recomienda contratar un plan empresarial mínimo de **300/100 Mbps**,
+preferentemente con fibra, IP pública fija, SLA y soporte empresarial. El plan
+supera el cálculo de 111,80/49,40 Mbps y deja margen para actualizaciones,
+respaldos, reuniones en línea y crecimiento.
+
+Como referencia comercial en Chile, Entel Empresas publica planes de fibra de
+300 Mbps y superiores
+([referencia](https://empresas.entel.cl/internet/internet-fibra-plus-legado)).
+El plan definitivo debe confirmarse según cobertura y cotización en Santiago y
+Valparaíso.
+
+## 11. Riesgos y limitaciones
 
 - La publicación web tiene una discrepancia de IP y máscara.
 - Seis servidores no tienen direccionamiento fijo comprobado.
@@ -195,7 +285,7 @@ resultado esperado, resultado real, captura y responsable.
 - La DMZ tiene un único enlace al núcleo.
 - La configuración IPsec aún no tiene evidencia de negociación.
 
-## 10. Presupuesto
+## 12. Presupuesto
 
 El presupuesto de equipamiento, cableado, licencias, materiales y accesorios
 debe mantenerse entre $20.000.000 y $35.000.000 CLP con IVA, según la
@@ -213,7 +303,28 @@ preliminar de equipamiento y materiales es de $30.878.464 IVA incluido. La
 mano de obra se agregará como un bloque separado según las tarifas y horas
 definidas.
 
-## 11. Conclusiones
+| Categoría | Modelo de referencia | Cantidad | Precio unitario IVA incl. | Subtotal IVA incl. |
+|---|---|---:|---:|---:|
+| Firewalls | FortiGate 60F | 2 | $763.013 | $1.526.026 |
+| Switches core | Cisco C9200L-24P-4X-E | 4 | $2.151.990 | $8.607.960 |
+| Switches de acceso | TP-Link TL-SG2428P | 5 | $285.926 | $1.429.630 |
+| Switch DMZ | Ubiquiti USW-24 | 1 | $418.492 | $418.492 |
+| Access points | HPE Aruba AP-515 | 4 | $719.488 | $2.877.952 |
+| Servidor | HPE ProLiant DL320 Gen11 | 1 | $10.151.922 | $10.151.922 |
+| UPS | APC SRV3KRIRK-E 3 kVA | 2 | $1.098.900 | $2.197.800 |
+| Racks | Rack 42U | 2 | $617.307 | $1.234.614 |
+| Cableado | Cable Cat6A, 305 m | 4 | $233.517 | $934.068 |
+| Licencias, soporte y accesorios | Provisión inicial | 1 | $1.500.000 | $1.500.000 |
+| **Total equipamiento y materiales** |  |  |  | **$30.878.464** |
+
+Los precios son referenciales, con IVA incluido, y deben confirmarse mediante
+cotización formal, stock y fecha de compra. Las fuentes y enlaces comerciales
+se encuentran en `presupuesto/lista-equipos-y-links.md` y en el DOCX de
+equipos. El monto deja un margen de $4.121.536 bajo el límite de
+$35.000.000 para completar patch panels, PDU, transceptores, canalización y
+otros accesorios, sin incorporar mano de obra.
+
+## 13. Conclusiones
 
 La solución propuesta entrega una base segmentada y escalable para conectar
 Santiago y Valparaíso. Su principal valor es combinar separación por VLAN,
@@ -225,7 +336,16 @@ habilitar los servicios pendientes y resolver el alcance de WLAN. Hasta
 entonces, las funciones se deben presentar como configuradas o pendientes de
 verificación, no como completamente operativas.
 
-## 12. Anexos
+## 14. Fuentes y anexos
+
+### Fuentes técnicas principales
+
+- [Rúbrica del proyecto](../../REDES%20COMPUTACIONALES/Rubrica_Proyecto_Red_Empresarial.pptx)
+- [Ayuda oficial de YouTube: velocidades recomendadas](https://support.google.com/youtube/answer/78358?hl=en-NP)
+- [Cisco Catalyst 9200 Series: ficha técnica](https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9200-series-switches/nb-06-cat9200-ser-data-sheet-cte-en.html)
+- [Fortinet FortiGate 60F: ficha técnica](https://dev01.firewalls.com/pub/media/wysiwyg/datasheets/Fortinet/FortiGate-60F.pdf)
+
+### Anexos
 
 - Anexo A: diagrama físico y lógico.
 - Anexo B: tabla completa de direccionamiento.
