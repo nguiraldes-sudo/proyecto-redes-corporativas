@@ -156,6 +156,11 @@ La auditoría detectó que seis servidores no tienen IP fija comprobada y que
 DNS y AAA aparecen deshabilitados en el estado guardado. Estos servicios no
 deben declararse operativos hasta corregirlos y probarlos.
 
+La asignación se simplifica usando DHCP por VLAN para PCs, teléfonos IP,
+impresoras e IoT. Los gateways HSRP, routers, switches, enlaces de tránsito y
+servidores mantienen direcciones estables mediante configuración estática o
+reservas DHCP por MAC.
+
 ## 7. Seguridad
 
 ### 7.1 Perímetro, NAT/PAT y DMZ

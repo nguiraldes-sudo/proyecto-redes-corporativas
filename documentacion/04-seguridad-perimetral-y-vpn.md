@@ -23,7 +23,8 @@ Red DMZ:     10.10.1.144/28
 Gateway DMZ: 10.10.1.145
 ```
 
-La guía auxiliar propone las siguientes direcciones:
+La guía auxiliar propone las siguientes direcciones para reservas DHCP o
+configuración estática:
 
 ```text
 Servidor web:    10.10.1.146
@@ -35,8 +36,11 @@ Servidor AAA:    10.10.1.151
 Servidor IoT:    10.10.1.152
 ```
 
-Estas IP deben verificarse en cada servidor antes de declararlas operativas.
-La auditoría detectó seis servidores sin IPv4 fija guardada y una discrepancia:
+Estas direcciones deben verificarse en cada servidor antes de declararlas
+operativas. En Packet Tracer se pueden configurar de forma estática o mediante
+una reserva DHCP por MAC; lo importante es que no cambien porque NAT, ACL,
+DNS y la publicación de servicios apuntan a ellas. La auditoría detectó seis
+servidores sin IPv4 fija guardada y una discrepancia:
 R-HQ publica `10.10.1.146`, mientras el objeto `Server HTTP` guardaba
 `10.10.1.147/24`. El gateway no significa que todos los servicios estén
 abiertos; las ACL deben permitir solo los puertos necesarios:

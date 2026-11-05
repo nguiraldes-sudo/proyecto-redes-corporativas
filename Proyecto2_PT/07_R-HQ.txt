@@ -104,11 +104,9 @@ exit
 ! ---- DHCP centralizado (los cores hacen relay a 10.10.15.1) ----
 ip dhcp excluded-address 10.10.1.129 10.10.1.133
 ip dhcp excluded-address 10.10.1.1 10.10.1.10
-ip dhcp excluded-address 10.10.1.30
 ip dhcp excluded-address 10.10.1.33 10.10.1.42
 ip dhcp excluded-address 10.10.1.65 10.10.1.74
 ip dhcp excluded-address 10.10.0.1 10.10.0.10
-ip dhcp excluded-address 10.10.0.120
 ip dhcp excluded-address 10.10.0.129 10.10.0.138
 ip dhcp excluded-address 10.10.0.193 10.10.0.202
 ip dhcp excluded-address 10.10.1.97 10.10.1.106

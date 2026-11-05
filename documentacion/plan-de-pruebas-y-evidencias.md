@@ -249,8 +249,8 @@ Verificar en cada servidor:
 | Server5 | AAA | Autenticación de un equipo autorizado |
 | Server6 | IoT | Acceso al monitor IoT |
 
-**Esperado:** cada servicio está habilitado, tiene IP fija y responde solo
-desde las redes permitidas.
+**Esperado:** cada servicio está habilitado, tiene una IP estable —estática o
+reservada por DHCP— y responde solo desde las redes permitidas.
 
 **Resultado real:** Pendiente.  
 **Captura:** Pendiente.

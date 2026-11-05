@@ -96,11 +96,9 @@ exit
 ! ---- DHCP (DNS = Srv-DNS de la DMZ de Casa Matriz por el tunel) ----
 ip dhcp excluded-address 10.20.1.17 10.20.1.21
 ip dhcp excluded-address 10.20.0.161 10.20.0.170
-ip dhcp excluded-address 10.20.0.190
 ip dhcp excluded-address 10.20.0.193 10.20.0.202
 ip dhcp excluded-address 10.20.0.225 10.20.0.234
 ip dhcp excluded-address 10.20.0.1 10.20.0.10
-ip dhcp excluded-address 10.20.0.60
 ip dhcp excluded-address 10.20.0.65 10.20.0.74
 ip dhcp excluded-address 10.20.0.129 10.20.0.138
 ip dhcp excluded-address 10.20.1.1 10.20.1.5

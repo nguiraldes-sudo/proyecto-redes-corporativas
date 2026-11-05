@@ -156,13 +156,39 @@ virtuales son:
 La auditoría confirma que las configuraciones están guardadas, pero no
 equivale a pruebas de conectividad, convergencia HSRP ni DHCP exitoso.
 
-## 9. Decisiones aún pendientes
+## 9. Política de asignación de direcciones
+
+Para reducir la configuración manual de los numerosos equipos finales, se
+utilizará **DHCP por VLAN** como regla general:
+
+| Tipo de equipo | Asignación recomendada | Motivo |
+|---|---|---|
+| PCs y notebooks | DHCP | Alta cantidad y cambios frecuentes |
+| Teléfonos IP | DHCP | Obtienen dirección y opciones de telefonía |
+| Impresoras y equipos IoT | DHCP con reserva por MAC | Administración simple, pero ubicación identificable |
+| Access points | DHCP con reserva por MAC | Facilita reemplazos sin perder trazabilidad |
+| Gateways HSRP/SVI | Estática | Son el punto de salida de cada VLAN |
+| Routers, switches y enlaces de tránsito | Estática | OSPF, gestión, ACL y monitoreo requieren direcciones conocidas |
+| Servidores DMZ y corporativos | Estática o reserva DHCP | NAT, DNS, ACL y publicación de servicios dependen de una dirección estable |
+
+Una **reserva DHCP** entrega siempre la misma dirección a un dispositivo según
+su dirección MAC. Así se reduce el trabajo manual sin dejar que un servidor o
+equipo de infraestructura cambie de IP inesperadamente. Las direcciones de
+gateway, tránsito y gestión quedan fuera de los pools DHCP para evitar
+conflictos.
+
+Los pools deben excluir como mínimo la dirección del gateway, las direcciones
+reservadas y el rango de infraestructura de cada subred. Por ejemplo, en una
+VLAN cuyo gateway HSRP es `.129`, el pool no debe entregar `.129` ni las
+direcciones destinadas a reservas.
+
+## 10. Decisiones aún pendientes
 
 - Confirmar si se implementarán WLAN/SSID y VLAN de invitados.
 - Confirmar si los dispositivos IoT serán cableados o inalámbricos.
 - Revisar que los modelos de Packet Tracer soporten las funciones necesarias.
 - Ejecutar pruebas de HSRP, STP, EtherChannel y DHCP.
-- Completar la tabla de asignación de IP para servidores, routers y switches,
+- Completar la tabla de asignación de IP para infraestructura y reservas DHCP,
   verificando físicamente cada equipo en Packet Tracer.
 
 ## Resumen para la defensa oral
@@ -193,6 +219,6 @@ equivale a pruebas de conectividad, convergencia HSRP ni DHCP exitoso.
   `G0/0.10` a `G0/0.110`.
 - Se validó la VLAN 90 con un PC temporal porque la webcam IoT no aprendió
   una dirección MAC en el switch.
-- Se configuró DHCP para las VLAN 10, 20, 30, 40, 50, 60, 80 y 100. El
-  teléfono IP recibió `10.10.80.11`.
+- Se configuró DHCP para las VLAN de usuarios, voz e IoT; el teléfono IP
+  recibió `10.10.80.11`.
 - Quedan pendientes SSH, ACL, DHCP, servicios, DMZ, OSPF, NAT/PAT y VPN.

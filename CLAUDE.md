@@ -160,7 +160,7 @@ si ya fueran nombres configurados en el archivo.
 
 - Abrir una copia de `packet-tracer/TRABAJO REDES-backup.pkt` para no alterar la
   fuente oficial durante las pruebas.
-- Corregir la publicación web, verificar las IP fijas de Server1–Server6 y
+- Corregir la publicación web, verificar las IP estables de Server1–Server6 y
   activar DNS/AAA.
 - Configurar o documentar la excepción docente para WLAN/SSID.
 - Probar OSPF, VPN IPsec, NAT/PAT, DMZ, ACLs y hardening.

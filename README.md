@@ -93,7 +93,8 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [ ] Verificar en ejecución HSRP, STP, EtherChannel, OSPF y las pruebas de
   caída de enlaces.
 - [ ] Resolver la discrepancia de publicación web (`10.10.1.146` frente a
-  `10.10.1.147/24`) y documentar las IP fijas de los servidores DMZ.
+  `10.10.1.147/24`) y documentar las IP estables —estáticas o reservadas por
+  DHCP— de los servidores DMZ.
 - [ ] Activar y probar DNS, AAA/ACS y los demás servicios corporativos.
 - [ ] Implementar WLAN/SSID o dejar registrada una autorización docente para
   omitirla; el `.pkt` oficial no contiene Access Point.
@@ -188,6 +189,13 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
   técnica y a un plano de recorridos.
 - Se generó `documentacion/informe-final.docx` con portada, índice, estilos,
   encabezado, pie de página y tablas.
+
+### 2026-11-04
+
+- Se definió DHCP por VLAN para PCs, notebooks, teléfonos IP, impresoras e IoT.
+- Gateways HSRP, routers, switches, enlaces de tránsito y servidores mantienen
+  IP estable mediante configuración estática o reservas DHCP por MAC.
+- Los pools DHCP deben excluir gateways, reservas y direcciones de gestión.
 
 ### Convención de nombres
 
