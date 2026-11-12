@@ -1,5 +1,11 @@
 # Presupuesto y cotizaciones
 
+El archivo de trabajo para cálculos es
+`presupuesto-red-corporativo.xlsx`. Incluye las hojas **Resumen**,
+**Equipos**, **Cableado**, **Mano de obra** y **Fuentes**. Los subtotales de
+equipos y materiales se calculan mediante fórmulas de cantidad por precio
+unitario; las partidas sin cotización quedan marcadas como pendientes.
+
 ## Alcance
 
 El presupuesto debe representar una implementación comercial para dos sedes,

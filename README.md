@@ -103,6 +103,8 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 - [ ] Ejecutar pruebas y recopilar evidencias.
 - [x] Preparar presupuesto preliminar de equipamiento y materiales, separado de
   la mano de obra.
+- [x] Crear planilla Excel del presupuesto con subtotales, metrado de cableado,
+  mano de obra separada y fuentes comerciales.
 - [x] Redactar informe técnico base en Markdown y generar versión DOCX formal.
 - [ ] Confirmar mediante visita técnica las cantidades reales de cable,
   canaleta, conectores, patch panel y accesorios.
