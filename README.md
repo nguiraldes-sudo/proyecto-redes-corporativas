@@ -192,9 +192,12 @@ el mismo archivo, especialmente los archivos binarios de Packet Tracer.
 
 ### 2026-11-04
 
-- Se definió DHCP por VLAN para PCs, notebooks, teléfonos IP, impresoras e IoT.
+- Se definió DHCP por VLAN para PCs y notebooks. Los teléfonos IP mantienen
+  DHCP porque requieren option 150 para CME.
+- Las impresoras, cámaras y termostatos IoT se configurarán con IP estática;
+  no usarán DHCP.
 - Gateways HSRP, routers, switches, enlaces de tránsito y servidores mantienen
-  IP estable mediante configuración estática o reservas DHCP por MAC.
+  IP estable mediante configuración estática.
 - Los pools DHCP deben excluir gateways, reservas y direcciones de gestión.
 
 ### Convención de nombres

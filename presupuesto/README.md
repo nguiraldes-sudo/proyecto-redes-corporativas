@@ -85,7 +85,7 @@ cotización formal. No incluye mano de obra.
 | Categoría | Modelo de referencia | Cant. | Unitario IVA incl. | Subtotal |
 |---|---|---:|---:|---:|
 | Firewalls | FortiGate 60F | 2 | $763.013 | $1.526.026 |
-| Switches core | Cisco C9200L-24P-4X-E | 4 | $2.151.990 | $8.607.960 |
+| Switches CORE multicapa | Cisco C9200L-24P-4X-E | 4 | $2.151.990 | $8.607.960 |
 | Switches acceso | TP-Link TL-SG2428P | 5 | $285.926 | $1.429.630 |
 | Switch DMZ | Ubiquiti USW-24 | 1 | $418.492 | $418.492 |
 | Access points | HPE Aruba AP-515 | 4 | $719.488 | $2.877.952 |
@@ -102,6 +102,17 @@ preliminar que aún no tienen precio confirmado —patch panel, keystones,
 patch cords, faceplates, PDU, transceptores y canalización— sin superar el
 límite de equipamiento. La canaleta y los consumibles no deben considerarse
 definitivos hasta realizar el levantamiento físico.
+
+### Alternativas compatibles consultadas
+
+Para no depender de un único modelo o proveedor, se documentaron alternativas
+compatibles en `presupuesto/seleccion-de-equipos.md`. Como referencias
+actualizadas al 12 de noviembre de 2026 se consideran Cisco
+C9200L-24P-4G-E para CORE, TP-Link TL-SG2428P para acceso, FortiGate 60F para
+perímetro, Aruba AP-515 para WLAN, Dell PowerEdge R470 para servidor, APC
+SRV3KRIRK-E para UPS y componentes Cat6A de Metacom para cableado estructurado.
+El total base no cambia hasta seleccionar formalmente una alternativa y
+confirmar su cotización.
 
 ## Mano de obra y servicios profesionales
 

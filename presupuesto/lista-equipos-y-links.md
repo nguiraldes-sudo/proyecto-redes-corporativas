@@ -43,6 +43,17 @@ formal con cada proveedor.
 | Rack 42U, alternativa | Rack 42U Ubiquiti | [LK Distribuidor](https://lk.cl/busqueda/RACK-42U) |
 | Cableado | Cable UTP Cat6A, rollo de 305 m | [Metacom](https://www.metacom.cl/) |
 
+## Alternativas compatibles consultadas
+
+| Categoría | Equipo | Enlace |
+|---|---|---|
+| CORE multicapa | Cisco C9200L-24P-4G-E | [ComparaFácil](https://www.comparafacil.cl/producto/cisco-catalyst-c9200l-24p-4g-e-c9200l-24p-4g-e) |
+| Acceso PoE | TP-Link TL-SG2428P | [SoloTodo](https://www.solotodo.cl/products/378649-tp-link-tl-sg2428p-tl-sg2428p) |
+| Access point Wi-Fi 6 | HPE Aruba AP-515 | [TiShop](https://tishop.cl/products/aruba-ap-515-rw-unified-ap) |
+| Servidor rack | Dell PowerEdge R470 | [KDTEC](https://kdtec.cl/producto/servidor-dell-poweredge-r470-rack-1u-xeon-6505p-32gb-480gb/) |
+| UPS online 3 kVA | APC SRV3KRIRK-E | [Centrale](https://centrale.cl/producto/ups-online-apc-easy-ups-srv3krirk-e-3000va-2700w-2u-rack-lcd-usb/) |
+| Cableado estructurado | Cat6A, keystones, patch cords y faceplates | [Metacom](https://www.metacom.cl/cableado-estructurado) |
+
 ## Observaciones
 
 - Se consideran dos firewalls, cuatro switches core y cinco switches de acceso.

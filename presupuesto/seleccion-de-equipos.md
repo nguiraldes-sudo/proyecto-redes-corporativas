@@ -63,6 +63,30 @@ WPA2/WPA3.
 | Rack 42U | [LK Distribuidor](https://lk.cl/busqueda/RACK-42U) | Desde $1.547.000 IVA aprox. | Precio publicado neto de $1.300.000 |
 | Cable Cat6A 305 m | [Metacom](https://www.metacom.cl/) | $233.517 | Precio publicado con IVA |
 
+## 3.1 Alternativas compatibles verificadas
+
+Las siguientes alternativas cumplen los requisitos funcionales del diseño y
+pueden reemplazar o respaldar la selección base. Los precios son referencias
+consultadas el **12 de noviembre de 2026**; deben confirmarse con cotización,
+stock, licencia y garantía antes de cerrar el presupuesto.
+
+| Bloque | Equipo compatible | Compatibilidad con el diseño | Referencia chilena |
+|---|---|---|---|
+| CORE multicapa | Cisco Catalyst C9200L-24P-4G-E | 24 puertos PoE+, 4 uplinks SFP; plataforma Cisco IOS XE y funciones de Capa 3 | [ComparaFácil, $2.295.900](https://www.comparafacil.cl/producto/cisco-catalyst-c9200l-24p-4g-e-c9200l-24p-4g-e) |
+| CORE multicapa, opción de mayor uplink | Cisco Catalyst C9200L-24P-4X-E | 24 puertos PoE+ y 4 uplinks 10G; usar cuatro unidades, verificando licencia Network Essentials/Advantage para OSPF y HSRP | [Tecnomas](https://www.tecnomas.cl/producto/catalyst-9200l-24-port-poe-4-x-10g-network-esse) |
+| Acceso PoE | TP-Link TL-SG2428P | 24 puertos PoE+, 4 SFP, VLAN, ACL, STP y gestión; adecuado para acceso, no para CORE | [SoloTodo, $230.990](https://www.solotodo.cl/products/378649-tp-link-tl-sg2428p-tl-sg2428p) |
+| Firewall perimetral | Fortinet FortiGate 60F | NAT/PAT, ACL/firewall, SD-WAN y VPN IPsec; adecuado para cada sede | [ZT Network, $763.013](https://www.ztnetwork.cl/fortigate-60f) |
+| Access point | HPE Aruba AP-515 (RW) | Wi-Fi 6, PoE, WPA2/WPA3 y operación en 2,4/5 GHz | [TiShop, $484.640 transferencia](https://tishop.cl/products/aruba-ap-515-rw-unified-ap) |
+| Servidor | Dell PowerEdge R470 | Rack 1U, Xeon, 32 GB RAM y 480 GB; alternativa al HPE DL320 Gen11 | [KDTEC](https://kdtec.cl/producto/servidor-dell-poweredge-r470-rack-1u-xeon-6505p-32gb-480gb/) |
+| UPS | APC SRV3KRIRK-E | Online, doble conversión, 3 kVA/2700 W, formato rack 2U | [Centrale, $1.207.200](https://centrale.cl/producto/ups-online-apc-easy-ups-srv3krirk-e-3000va-2700w-2u-rack-lcd-usb/) |
+| Cableado estructurado | Cable U/FTP Cat6A 305 m U-Kbling | Cableado horizontal Cat6A para los 42 puntos preliminares | [Metacom, $213.956](https://www.metacom.cl/cableado-estructurado) |
+| Patch panel y terminaciones | Cat6, keystones, patch cords y faceplates | Permite completar rack y puntos de usuario con componentes compatibles Cat6/Cat6A | [Metacom, catálogo](https://www.metacom.cl/cableado-estructurado) |
+
+El C9200L-24P-4G-E y el C9200L-24P-4X-E son alternativas de CORE; no se
+deben mezclar modelos sin verificar licencias, uplinks y compatibilidad de
+StackWise. El TP-Link TL-SG2428P se mantiene únicamente como switch de
+acceso, porque no reemplaza el enrutamiento Layer 3 requerido en los CORE.
+
 ## 4. Mano de obra separada
 
 ### Metrado preliminar de instalación

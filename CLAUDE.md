@@ -126,6 +126,11 @@ de 48 puertos, 42 patch cords de usuario y 42 patch cords de rack. La
 canaleta se debe medir por recorrido real y no se puede inferir directamente
 desde los metros de cable.
 
+La política de direccionamiento distingue los equipos finales: solo PCs y
+notebooks usan DHCP como computadores de usuario; teléfonos IP mantienen DHCP
+por option 150 de CME. Impresoras, cámaras y termostatos IoT deben usar IP
+estática y no DHCP.
+
 ### Nombres de la topología actual
 
 La versión oficial ensayada es `packet-tracer/TRABAJO REDES-backup.pkt`. Los

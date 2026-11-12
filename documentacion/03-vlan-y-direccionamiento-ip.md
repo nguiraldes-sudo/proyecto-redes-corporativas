@@ -163,19 +163,20 @@ utilizará **DHCP por VLAN** como regla general:
 
 | Tipo de equipo | Asignación recomendada | Motivo |
 |---|---|---|
-| PCs y notebooks | DHCP | Alta cantidad y cambios frecuentes |
-| Teléfonos IP | DHCP | Obtienen dirección y opciones de telefonía |
-| Impresoras y equipos IoT | DHCP con reserva por MAC | Administración simple, pero ubicación identificable |
+| PCs y notebooks | DHCP | Son los únicos computadores de usuario que recibirán dirección automáticamente |
+| Teléfonos IP | DHCP | Requieren opciones de telefonía, como option 150, para registrarse en CME |
+| Impresoras | Estática | Mantienen una dirección conocida para impresión y administración |
+| Cámaras y termostatos IoT | Estática | Facilita monitoreo, ACL y trazabilidad por ubicación |
 | Access points | DHCP con reserva por MAC | Facilita reemplazos sin perder trazabilidad |
 | Gateways HSRP/SVI | Estática | Son el punto de salida de cada VLAN |
 | Routers, switches y enlaces de tránsito | Estática | OSPF, gestión, ACL y monitoreo requieren direcciones conocidas |
 | Servidores DMZ y corporativos | Estática o reserva DHCP | NAT, DNS, ACL y publicación de servicios dependen de una dirección estable |
 
-Una **reserva DHCP** entrega siempre la misma dirección a un dispositivo según
-su dirección MAC. Así se reduce el trabajo manual sin dejar que un servidor o
-equipo de infraestructura cambie de IP inesperadamente. Las direcciones de
-gateway, tránsito y gestión quedan fuera de los pools DHCP para evitar
-conflictos.
+Las impresoras, cámaras y termostatos no deben configurarse como clientes
+DHCP en esta propuesta: se les asignará manualmente una dirección libre de su
+VLAN, fuera del rango dinámico. Los teléfonos IP mantienen DHCP porque
+necesitan recibir las opciones de telefonía. Las direcciones de gateway,
+tránsito y gestión quedan fuera de los pools DHCP para evitar conflictos.
 
 Los pools deben excluir como mínimo la dirección del gateway, las direcciones
 reservadas y el rango de infraestructura de cada subred. Por ejemplo, en una
@@ -219,6 +220,8 @@ direcciones destinadas a reservas.
   `G0/0.10` a `G0/0.110`.
 - Se validó la VLAN 90 con un PC temporal porque la webcam IoT no aprendió
   una dirección MAC en el switch.
-- Se configuró DHCP para las VLAN de usuarios, voz e IoT; el teléfono IP
-  recibió `10.10.80.11`.
+- En esa etapa se configuró DHCP para las VLAN de usuarios, voz e IoT; el
+  teléfono IP recibió `10.10.80.11`. La política vigente de este proyecto
+  deja DHCP para PCs/notebooks y teléfonos IP, mientras impresoras, cámaras y
+  termostatos usan IP estática.
 - Quedan pendientes SSH, ACL, DHCP, servicios, DMZ, OSPF, NAT/PAT y VPN.

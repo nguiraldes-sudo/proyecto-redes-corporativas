@@ -37,9 +37,9 @@ Servidor IoT:    10.10.1.152
 ```
 
 Estas direcciones deben verificarse en cada servidor antes de declararlas
-operativas. En Packet Tracer se pueden configurar de forma estática o mediante
-una reserva DHCP por MAC; lo importante es que no cambien porque NAT, ACL,
-DNS y la publicación de servicios apuntan a ellas. La auditoría detectó seis
+operativas. En esta propuesta los servidores se configuran con IP estática;
+lo importante es que no cambien porque NAT, ACL, DNS y la publicación de
+servicios apuntan a ellas. La auditoría detectó seis
 servidores sin IPv4 fija guardada y una discrepancia:
 R-HQ publica `10.10.1.146`, mientras el objeto `Server HTTP` guardaba
 `10.10.1.147/24`. El gateway no significa que todos los servicios estén

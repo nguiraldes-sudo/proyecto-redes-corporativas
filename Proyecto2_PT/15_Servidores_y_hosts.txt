@@ -31,15 +31,16 @@ Srv-IoT    10.10.1.152  Services > IoT: ON. Desde un PC abrir http://10.10.1.152
 PCs y Laptop (ambas sedes): Desktop > IP Configuration > DHCP
   (reciben IP, gateway HSRP y DNS 10.10.1.147 desde R-HQ / R-SUC)
 
-Impresoras: Desktop > IP Configuration > DHCP
-  Las cuatro impresoras reciben IP, gateway HSRP y DNS desde el pool de su VLAN.
-  Si se necesita una IP permanente para monitoreo, crear una reserva DHCP por MAC.
+Impresoras: Desktop > IP Configuration > Static
+  Asignar manualmente una IP libre de la VLAN correspondiente, fuera del pool
+  DHCP, con gateway HSRP y DNS 10.10.1.147.
 
 Telefonos IP 7960: Physical > conectar IP_PHONE_POWER_ADAPTER. Se registran solos
   (DHCP con option 150 -> CME). Ext HQ 1001-1003, Sucursal 2001-2002.
 
 Camara-IP y Termostato (ambas sedes, VLAN 80):
-  Config > Settings: IP DHCP
+  Config > Settings: IP Static. Asignar una IP libre de VLAN 80, fuera del pool
+  DHCP, con gateway HSRP y DNS 10.10.1.147.
   Config > IoT Server: Remote Server | Server Address 10.10.1.152 | User admin | Password Cisco123 | Connect
   Ver/controlar desde un PC: navegador http://10.10.1.152 > IoT Monitor
 
